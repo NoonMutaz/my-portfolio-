@@ -1,0 +1,55 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+@import "tailwindcss";
+@plugin "daisyui"; /* @tailwind base;
+@tailwind components; */
+@tailwind utilities; 
+
+
+a {
+  font-weight: 500;
+ 
+  text-decoration: inherit;
+}
+a:hover {
+  /* color: tomato; */
+}
+
+body {
+  /* margin: 0;
+  display: flex;
+  place-items: center; */
+  /* min-width: 320px; */
+   font-family: "Oswald", sans-serif;
+   /* margin: 0; */
+  /* background-image: url(assets/smokeBG.jpg); */
+  background:rgb(255, 255, 255);
+  /* background-size: cover; */
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 2.4em;
+  /* line-height: 1.1; */
+}
+
+/* button {
+  /* border-radius: 8px;
+  border: 1px solid transparent; */
+  
+  /* cursor: pointer;
+  transition: border-color 0.25s;
+} */ */
+/* button:hover {
+  border-color: red;
+ 
+   font-weight:bold;
+
+} */
+ 
+
+.notfound  {
+  background-color: black;
+  color: white;
+}
