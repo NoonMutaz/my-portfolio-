@@ -129,15 +129,16 @@ font-size: 13px;
      }
 
      .button { /* Corrected selector for all button elements */
-       width: 140px;
+       width: 100px;
        height: 40px;
+       font-size: 22px;
    
        /* font-size: 9px; */
      }
 
      .h1 {
-  font-size: 45px;
-  line-height: calc(7px + 8vh);
+  font-size: 35px;
+  line-height: calc(17px + 4vh);
    
    }}
    
