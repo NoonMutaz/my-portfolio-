@@ -7,7 +7,7 @@ import Modal from '@mui/joy/Modal';
 import RegisterComponent from '../Register/RegisterComponent';  
 import Sheet from '@mui/joy/Sheet';
  
-export default function Register() {
+ function Register() {
   const [open, setOpen] = React.useState (false);
   return (
     <React.Fragment>
@@ -32,4 +32,4 @@ export default function Register() {
       </Modal>
     </React.Fragment>
   );
-}
+}export default React.memo(Register);

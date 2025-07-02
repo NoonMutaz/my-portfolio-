@@ -1,3 +1,5 @@
+ import React from "react";
+import { useState } from "react";
  import { assets } from "../../assets/assets";
 import Product from "./Product"
 const products = [
@@ -87,6 +89,8 @@ const buttonData = [
 
 
 function Btn ({name ,onClick,img2}) {
+
+
   return(
  <div className='flex flex-col items-center '> <div   
  
@@ -98,36 +102,37 @@ function Btn ({name ,onClick,img2}) {
 </div>
 )
   }
-export default function Products({sectionRef}) {
+ function Products({sectionRef}) {
+    const [page, setPage] = useState(1);
+  const itemsPerPage = 6; // Show 3 products per page
+  const paginatedProducts = products.slice((page - 1) * itemsPerPage, page * itemsPerPage);
+
 
   return (
-    <div ref={sectionRef}   className="    ">
-      <div className="flex flex-wrap  gap-4 px-[3%] mb-6">
+      <div ref={sectionRef}>
+      <div className="flex flex-wrap gap-4 px-[3%] mb-6">
+        {buttonData.map((btn, index) => (
+          <Btn key={index} name={btn.name} img2={btn.img2} onClick={btn.onClick} />
+        ))}
+      </div>
 
-
-{buttonData.map((btn, index) => (
-  <Btn
-    key={index}
-    name={btn.name}
-    img2={btn.img2}
-    onClick={btn.onClick}
-  />
-))}
-</div>
-
-
-<div className=" flex items-center justify-center flex-wrap gap-4 mb-4">
-{products.map((product) => (
-        <Product 
-          key={product.id}
-          title={product.title}
-          description={product.description}
-          price={product.price}
-          img={product.img}
-        />
-      ))}
-
-</div>
+      <div className="flex items-center justify-center flex-wrap gap-4 mb-4">
+        {paginatedProducts.map((product) => (
+          <Product
+            key={product.id}
+            title={product.title}
+            description={product.description}
+            price={product.price}
+            img={product.img}
+          />
+        ))}
+      </div>
+      <div className="flex justify-center  text-[20px] gap-8 mb-4">
+        <button className="cursor-pointer" onClick={() => setPage(page - 1)} disabled={page === 1}>Prev</button>
+        <button className="cursor-pointer" onClick={() => setPage(page + 1)} disabled={page * itemsPerPage >= products.length}>Next</button>
+      </div>
     </div>
-  )
+  );
+
 }
+export default React.memo(Products);

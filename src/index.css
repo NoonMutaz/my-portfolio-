@@ -51,7 +51,7 @@ button{
    font-weight:bold;
 
 } */
- 
+ button{cursor:pointer;}
 
 .notfound  {
   background-color: black;
