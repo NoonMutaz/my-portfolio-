@@ -11,7 +11,7 @@ export default function LoginModal() {
   const [open, setOpen] = React.useState (false);
   return (
     <React.Fragment>
-           <button  onClick={() => setOpen(true)} style={{  boxShadow: "rgba(0, 0, 0, 0.5) 0px -40px 36px -28px inset" }}  className="  hover:text-[white]  cursor-pointer font-sans font-semibold rounded-[30px] text-[white] bg-[red]  ">
+           <button  onClick={() => setOpen(true)} style={{  boxShadow: "rgba(0, 0, 0, 0.5) 0px -40px 36px -28px inset" }}  className="z-10  button   cursor-pointer    rounded-[30px] text-[white] bg-[red]  ">
           Login
    
       </button>  

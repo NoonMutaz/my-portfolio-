@@ -13,7 +13,7 @@ export default function Header3() {
 <h1 className="text-sm text-wrap h1 font-sans  ">
   Discover the books section
  </h1>
-       <button style={{  boxShadow: "rgba(0, 0, 0, 0.5) 0px -40px 36px -28px inset" }}  className="  hover:text-[white] font-sans w-[50px]   text-[18px] rounded-[10px] text-[white] bg-[red]  ">
+       <button style={{  boxShadow: "rgba(0, 0, 0, 0.5) 0px -40px 36px -28px inset" }}  className="  hover:text-[white] font-sans w-[150px] h-[60px]   text-[18px] rounded-[10px] text-[white] bg-[red]  ">
        Discover more
         </button>
     

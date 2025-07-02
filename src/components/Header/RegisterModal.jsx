@@ -6,14 +6,13 @@ import Modal from '@mui/joy/Modal';
 // import Typography from '@mui/joy/Typography';
 import RegisterComponent from '../Register/RegisterComponent';  
 import Sheet from '@mui/joy/Sheet';
-
+ 
 export default function Register() {
   const [open, setOpen] = React.useState (false);
   return (
     <React.Fragment>
-           <button  onClick={() => setOpen(true)}  className=" cursor-pointer w-[90px] h-[60px] bg-[white] border-2 border-[red]   bg-none rounded-[30px] text-[red]  md:w-[90px]   md:h-[60px]">
+           <button  onClick={() => setOpen(true)}  className="z-10  bg-white cursor-pointer w-[190px] h-[60px] border-2 button border-[red] rounded-[30px] text-[red] md:w-[190px] md:h-[60px]">
           Register
-   
       </button>  
       <Modal
       className="flex  items-center justify-center  w-full"
