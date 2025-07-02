@@ -11,7 +11,12 @@ import Sheet from '@mui/joy/Sheet';
   const [open, setOpen] = React.useState (false);
   return (
     <React.Fragment>
-           <button  onClick={() => setOpen(true)}  className="z-15  bg-white cursor-pointer w-[190px] h-[60px] border-2 button border-[red] rounded-[30px] text-[red] md:w-[190px] md:h-[60px]">
+           <button  onClick={() => setOpen(true)}  className=" z-15 button  cursor-pointer rounded-[30px] bg-white text-red-500
+    w-[120px] h-[48px] text-base
+    sm:w-[100px] sm:h-[40px] sm:text-sm
+    md:w-[140px] md:h-[56px] md:text-lg
+    lg:w-[160px] lg:h-[60px] lg:text-xl
+  ">
           Register
       </button>  
       <Modal
@@ -25,7 +30,7 @@ import Sheet from '@mui/joy/Sheet';
         <Sheet
           variant="outlined"
           sx={{ maxWidth: 650, borderRadius: 'md', px: 3, boxShadow: 'lg', }}>
-          <div className='   text-[red] font-bold cursor-pointer  mt-2 flex justify-end' onClick={() => setOpen(false)}>X</div>
+          <div className='    text-[red] font-bold cursor-pointer  mt-2 flex justify-end' onClick={() => setOpen(false)}>X</div>
             <RegisterComponent />
    
         </Sheet>

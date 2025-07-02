@@ -94,53 +94,44 @@ font-weight:bold;
 font-size: 13px;
 }
 
+.button{
+  width:'190px';
+  height:60px;
+}
+
 
 .text-outline {
   -webkit-text-stroke: 1px rgb(5, 5, 5);
   color: white; /* or transparent for outline-only look */
 }
 
-  @media screen and (max-width: 1600px) and (min-width: 259px) {
-     .header {
-       font-size: 28px;
-       display: flex;
-       flex-direction: column;
-     }
+@media screen and (max-width: 1600px) and (min-width: 1001px) {
+  .header { font-size: 28px; }
+  .button { width: 155px; height: 60px; }
+  .h1 { font-size: 49px; line-height: calc(7px + 8vh); }
+}
 
-     .button { /* Corrected selector for all button elements */
-       width: 155px;
-       height: 60px;
-      
-       
-       /* font-size: 9px; */
-     }
+@media screen and (max-width: 1000px) and (min-width: 701px) {
+  .header { font-size: 22px; }
+  .button { width: 120px; height: 50px; }
+  .h1 { font-size: 36px; line-height: calc(6px + 7vh); }
+}
 
-     .h1 {
-  font-size: 49px;
-  line-height: calc(7px + 8vh);
-   
-   }}
+@media screen and (max-width: 700px) and (min-width: 501px) {
+  .header { font-size: 18px; }
+  .button { width: 90px; height: 40px; }
+  .h1 { font-size: 24px; line-height: calc(5px + 6vh); }
+}
 
-     @media screen and (max-width: 390px) and (min-width: 259px) {
-     .header {
-       font-size: 28px;
-       display: flex;
-       flex-direction: column;
-     }
+@media screen and (max-width: 500px) and (min-width: 401px) {
+  .header { font-size: 19px; }
+  .button { width: 60px; height: 40px; font-size: 10px; }
+  .h1 { font-size: 40px; line-height: calc(25px + 4vh); }
+}
 
-     .button { /* Corrected selector for all button elements */
-       width: 100px;
-       height: 40px;
-       font-size: 22px;
-   
-       /* font-size: 9px; */
-     }
-
-     .h1 {
-  font-size: 35px;
-  line-height: calc(17px + 4vh);
-   
-   }}
-   
- 
-   
+@media screen and (max-width: 417px) and (min-width: 285px) {
+  .header { font-size: 15px; }
+  .button { width: 60px; height: 40px; font-size: 10px; }
+  .h1 { font-size: 26px; }
+    .h1 { font-size: 24px; line-height: calc(5px + 6vh); }
+}

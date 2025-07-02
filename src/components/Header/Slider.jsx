@@ -9,7 +9,7 @@ export default function Slider({ onScrollToProducts }) {
 
   return (
     <div className="flex items-center justify-center pt-14 p-[3%] w-full h-full">
-      <div className="carousel mb-9 w-full">
+      <div className="carousel  mb-9 w-full">
         {/* Slide 1 */}
         <div className={`carousel-item relative w-full ${slide === 1 ? "" : "hidden"}`}>
           <Header onScrollToProducts={onScrollToProducts} />
