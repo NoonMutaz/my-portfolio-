@@ -1,6 +1,7 @@
 
 import { assets } from "../../assets/assets"; 
 import "./header.css";
+import Btns from "./Btns";
 export default function Header2() {
 
   
@@ -16,8 +17,10 @@ export default function Header2() {
        <button style={{  boxShadow: "rgba(0, 0, 0, 0.5) 0px -40px 36px -28px inset" }}  className=" z-10 hover:text-[white] font-sans w-[150px] h-[60px]  text-[18px] rounded-[10px] text-[white] bg-[red]  ">
           Get Started
         </button>
-    
+ <div className="hidden">
+     <Btns />
 
+  </div>  
         </div>
 
         </div> 

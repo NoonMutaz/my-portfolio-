@@ -13,7 +13,7 @@ export default function Product({title,description,price,img}) {
     <p>{description}</p>
     <div className="flex card-actions justify-between">
           <div className="mt-5 text-black text-[28px]">{price}$</div>   
-              <button style={{  boxShadow: "rgba(0, 0, 0, 0.5) 0px -40px 36px -28px inset" }}   className=" h-[40px] hover:text-[white]  cursor-pointer   font-sans font-semibold rounded-[30px] text-[white] bg-[#bd3a3a]  ">
+              <button style={{  boxShadow: "rgba(0, 0, 0, 0.5) 0px -40px 36px -28px inset" }}   className=" h-[40px] hover:text-[white]  cursor-pointer p-2  font-sans font-semibold rounded-[30px] text-[white] bg-[#bd3a3a]  ">
           Buy Now
         </button>
    

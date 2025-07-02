@@ -2,6 +2,7 @@
  
 import { assets } from "../../assets/assets";
 import "./header.css";
+import Btns from "./Btns";
 export default function Header3() {
 
   
@@ -17,6 +18,9 @@ export default function Header3() {
        Discover more
         </button>
     
+    <div className="hidden">
+      <Btns />
+    </div>
 
         </div>
 
