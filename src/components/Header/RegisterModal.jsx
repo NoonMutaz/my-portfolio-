@@ -11,7 +11,7 @@ export default function Register() {
   const [open, setOpen] = React.useState (false);
   return (
     <React.Fragment>
-           <button  onClick={() => setOpen(true)}  className="z-10  bg-white cursor-pointer w-[190px] h-[60px] border-2 button border-[red] rounded-[30px] text-[red] md:w-[190px] md:h-[60px]">
+           <button  onClick={() => setOpen(true)}  className="z-15  bg-white cursor-pointer w-[190px] h-[60px] border-2 button border-[red] rounded-[30px] text-[red] md:w-[190px] md:h-[60px]">
           Register
       </button>  
       <Modal

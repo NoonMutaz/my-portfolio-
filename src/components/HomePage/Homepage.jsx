@@ -10,7 +10,7 @@ export default function Homepage() {
   };
 
   return (
-    <div className="pt-16">
+    <div className=" ">
             <Slider onScrollToProducts={scrollToProducts}  />
    
             <div ref={productsRef}>

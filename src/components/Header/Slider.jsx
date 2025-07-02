@@ -1,4 +1,4 @@
- import Header from "./Header";
+import Header from "./Header";
 
   import Header2 from "./Header2";
 import Header3 from "./Header3";
@@ -11,7 +11,7 @@ export default function Slider({onScrollToProducts}) {
   slide?.scrollIntoView({ behavior: "smooth", block: "nearest" });
 };
   return (
-    <div className=" flex items-center justify-center w-full h-full">
+    <div className=" flex items-center justify-center  p-[3%] w-full h-full">
       <div className="carousel     mb-9  w-full">
   <div id="slide1" className="carousel-item relative  w-full">
     <Header onScrollToProducts={onScrollToProducts } />
@@ -19,8 +19,20 @@ export default function Slider({onScrollToProducts}) {
         <Products />
       </div> */}
     <div className="absolute   left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between z-10">
-      <button   className="btn btn-circle bg-red-500 z-10"onClick={(e) => goToSlide(e, "slide3")}>❮</button>
-      <button   className="btn btn-circle bg-red-500 z-10"onClick={(e) => goToSlide(e, "slide2")}>❯</button>
+      <button
+  type="button"
+  className="btn btn-circle bg-red-500 z-10"
+  onClick={(e) => goToSlide(e, "slide3")}
+>
+  ❮
+</button>
+<button
+  type="button"
+  className="btn btn-circle bg-red-500 z-10"
+  onClick={(e) => goToSlide(e, "slide2")}
+>
+  ❯
+</button>
     </div>
   </div>
   <div id="slide2" className="carousel-item relative w-full">
