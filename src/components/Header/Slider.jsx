@@ -8,7 +8,7 @@ export default function Slider({ onScrollToProducts }) {
   const [slide, setSlide] = useState(1);
 
   return (
-    <div className="flex items-center justify-center pt-18 p-[3%] w-full h-full">
+    <div className="flex items-center justify-center pt-14 p-[3%] w-full h-full">
       <div className="carousel mb-9 w-full">
         {slide === 1 && (
           <div className="carousel-item relative w-full">
