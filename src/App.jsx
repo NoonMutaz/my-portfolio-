@@ -7,10 +7,33 @@ import Contact from "./pages/ContactUs/Contact"
 import About from "./pages/About/About"
 import NotFound from "./pages/not-found"
 import Login  from  "./pages/Login/Login"
+import { useState, useEffect } from "react";
  
  const App = () => {
+
+
+
+ const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate a data fetch
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="loader"></div>
+      </div>
+    );
+  }
+
+
+
    return (
-     <div className="min-h-screen pb-[%]" >
+     <div className=" " >
     
        <Navbar/>
       

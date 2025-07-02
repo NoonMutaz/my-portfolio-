@@ -116,7 +116,7 @@ export default function Products({sectionRef}) {
 </div>
 
 
-<div className=" flex items-center justify-center flex-wrap sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-4">
+<div className=" flex items-center justify-center flex-wrap gap-4 mb-4">
 {products.map((product) => (
         <Product 
           key={product.id}

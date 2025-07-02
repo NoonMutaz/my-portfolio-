@@ -1,7 +1,7 @@
  
 export default function About() {
   return (
-    <div className=" px-[15%] text-xl bg-[#CA7842] flex flex-col gap-18 min-h-screen mt-[-50px] items-center justify-center min-h-screen text-[white] pb-[3%]"> 
+    <div className=" px-[15%] text-xl bg-[#CA7842] flex flex-col gap-18 min-h-screen   items-center justify-center  text-[white]  "> 
 <div>
   <h2 className="font-bold flex  items-center justify-center ">Our Mission</h2>
 <p>Our mission is simple: help people declutter while letting others discover hidden treasures. From dusty attic gems to quirky collectibles — everything deserves a second story.</p>

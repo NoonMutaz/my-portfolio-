@@ -1,6 +1,9 @@
 import { assets } from "../../assets/assets";
 import './Navbar.css';
+import { useNavigate } from 'react-router-dom';
 export default function Navbar() {
+  const navigate = useNavigate();
+
   return (
     <div>
       <div className="navbar fixed z-50   bg-black text-[white]  shadow-sm">
@@ -12,9 +15,9 @@ export default function Navbar() {
       <ul
         tabIndex={0}
         className="menu menu-sm dropdown-content text-[black] bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-        <li><a>Homepage</a></li>
-        <li><a>Contact</a></li>
-        <li><a>About</a></li>
+        <li onClick={() => navigate('/')}><a>Homepage</a></li>
+        <li onClick={() => navigate('/ContactUs')}><a>Contact</a></li>
+        <li onClick={() => navigate('/About')}><a>About</a></li>
         <div className="h-[2px] mt-1 w-[199px] bg-black"></div>
         <li className="mt-1"><a>Cars</a></li>
         <li><a>Furniture</a></li>
