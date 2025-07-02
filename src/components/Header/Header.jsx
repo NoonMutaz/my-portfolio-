@@ -11,7 +11,7 @@ export default function Header({onScrollToProducts }) {
         {/* <img src={assets.burger} className="img max-h-[470px]   sm:max-h-[230px] sm:w-[24%] md:w-[24%] flex flex-wrap  w-[35%]"/> */}
         
   <div className=" header text-lg sm:text-sm flex flex-col items-center justify-center gap-[30px] w-full h-full   text-[white]  font-extrabold mb-[15px] " >
-<h1 className="text-4xl font-bold">
+<h1 className="h1 text-4xl font-bold">
   “Vintage, Rusty, Weird — We Sell It All”
 </h1>
 

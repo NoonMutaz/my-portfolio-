@@ -11,7 +11,7 @@ button {
 }
 
 
-h1 {
+.h1 {
   font-size: calc(20px + 18vh);
   line-height: calc(20px + 20vh);
 /*   text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff,
@@ -104,7 +104,7 @@ font-size: 13px;
   color: white; /* or transparent for outline-only look */
 }
 
-  @media screen and (max-width: 1600px) and (min-width: 525px) {
+  @media screen and (max-width: 1600px) and (min-width: 259px) {
      .header {
        font-size: 28px;
        display: flex;
@@ -112,11 +112,37 @@ font-size: 13px;
      }
 
      button { /* Corrected selector for all button elements */
-       width: 155px;
+       width: 255px;
        height: 60px;
        padding: 10px;
-       /* font-size: 12px; */
+       font-size: 9px;
      }
-    
-   }
+
+     .h1 {
+  font-size: 49px;
+  line-height: calc(7px + 8vh);
+   
+   }}
+
+     @media screen and (max-width: 390px) and (min-width: 259px) {
+     .header {
+       font-size: 28px;
+       display: flex;
+       flex-direction: column;
+     }
+
+     button { /* Corrected selector for all button elements */
+       width: 205px;
+       height: 40px;
+       padding: 10px;
+       font-size: 9px;
+     }
+
+     .h1 {
+  font-size: 45px;
+  line-height: calc(7px + 8vh);
+   
+   }}
+   
+ 
    

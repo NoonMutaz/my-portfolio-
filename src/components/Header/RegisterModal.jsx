@@ -11,7 +11,7 @@ export default function Register() {
   const [open, setOpen] = React.useState (false);
   return (
     <React.Fragment>
-           <button  onClick={() => setOpen(true)} style={{  boxShadow: "rgba(0, 0, 0, 0.5) 0px -40px 36px -28px inset" }}  className="  hover:text-[white]  cursor-pointer font-sans font-semibold rounded-[30px] text-[white] bg-[red]  ">
+           <button  onClick={() => setOpen(true)}  className=" cursor-pointer w-[90px] h-[60px] bg-[white] border-2 border-[red]   bg-none rounded-[30px] text-[red]  md:w-[90px]   md:h-[60px]">
           Register
    
       </button>  

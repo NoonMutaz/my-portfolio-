@@ -12,7 +12,7 @@ export default function Slider({onScrollToProducts}) {
 };
   return (
     <div className=" flex items-center justify-center w-full h-full">
-      <div className="carousel  h-full    mb-9  w-full">
+      <div className="carousel     mb-9  w-full">
   <div id="slide1" className="carousel-item relative  w-full">
     <Header onScrollToProducts={onScrollToProducts } />
     {/* <div ref={productsRef}>
