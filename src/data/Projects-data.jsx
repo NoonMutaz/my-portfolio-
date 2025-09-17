@@ -8,7 +8,7 @@ export const projects = [
       "A full-stack e-commerce platform for buying and selling used items. Features include listing management, search & filter, and user authentication. Built with React, .NET Core APIs, and SQL Server.",
     image: DustyBazaar,
     alt: "Second-Hand Marketplace",
-    link: "https://noon-almutaz-portfolio.netlify.app/"
+    link: "https://e-commerce-dusty-bazaar-web.vercel.app/"
   },
   { id: 2,
     title: "Arabic Restaurant Website",
