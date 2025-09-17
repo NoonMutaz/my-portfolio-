@@ -1,4 +1,4 @@
-import HomePage from "../../components/Home-Page/Home-page"
+import HomePage from "../../components/Home-page/Home-page"
  
  
 
