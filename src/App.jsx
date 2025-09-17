@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "./pages/Home/home";
+import Home from "./pages/Home/Home";
 import NotFound from "./pages/Not-found/Not-found";
 import styled, { keyframes } from "styled-components";
 import { useState, useEffect } from "react";

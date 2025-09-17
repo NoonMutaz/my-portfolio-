@@ -2,7 +2,7 @@ import HomePage from "../../components/Home-Page/Home-page"
  
  
 
-export default function home() {
+export default function Home() {
   return (
     <div  >
      
