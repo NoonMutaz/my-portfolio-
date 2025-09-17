@@ -1,4 +1,4 @@
-import Homepage from "../../components/HomePage/Homepage"
+import HomePage from "../../components/Home-Page/Home-page"
  
  
 
@@ -6,7 +6,7 @@ export default function home() {
   return (
     <div  >
      
-      <Homepage/>
+      <HomePage/>
  
     </div>
   )
