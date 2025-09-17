@@ -1,6 +1,6 @@
 import DustyBazaar from '../assets/DustyBazaar.png';
 import happyResturant from '../assets/happyResturant.png';
-
+import Portfolio from '../assets/portfolio.png'
 export const projects = [
   { id: 1,
     title: "Second-Hand Marketplace",
@@ -20,12 +20,12 @@ export const projects = [
   },
   {
     id: 3,
-    title: "Portfolio / Demo Project",
+    title: "Portfolio Project",
     description:
-      "Showcases modern UI/UX design with animations, interactive components, and futuristic styling. Built with React, Framer Motion, and Styled-Components.",
-    image: "https://picsum.photos/400/200?random=3",
-    alt: "Portfolio / Demo Project",
-    link: "https://noon-almutaz-portfolio.netlify.app/",
+      "Showcases modern UI/UX design with animations, interactive components, and futuristic styling. Built with React,Bootstrap ,Framer Motion, and Styled-Components.",
+    image:Portfolio  ,
+    alt: "Portfolio Project",
+    link: "#",
   },
   
 ];
