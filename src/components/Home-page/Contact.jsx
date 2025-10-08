@@ -74,6 +74,7 @@ const [status, setStatus] = useState("");
         message: formData.message,
         timestamp: serverTimestamp(),
       });
+console.log(import.meta.env.VITE_FIREBASE_API_KEY);
 
       setFormData({ name: "", email: "", message: "" });
       setStatus("  Message sent successfully!");
@@ -137,7 +138,7 @@ const [status, setStatus] = useState("");
                 </Form.Group>
                 <NeonButton type="submit">Send</NeonButton>
                   {status && (
-              <p
+              <div
                 style={{
                   color: colors.neon,
                   marginTop: "1rem",
@@ -145,7 +146,7 @@ const [status, setStatus] = useState("");
                 }}
               >
                 {status}
-              </p>
+              </div>
             )}
               </ContactForm>
             </Col>
