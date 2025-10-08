@@ -75,8 +75,7 @@ export default function Hero() {
             whilehover={{ scale: 1.1, boxShadow: "0 0 35px #00ff7f" }}
           >
             View My Work
-          </NeonButton>
-              
+          </NeonButton> 
               </HeroSubtitleMotion>   
         </Container>
       </HeroSection>
