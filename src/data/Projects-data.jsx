@@ -13,7 +13,7 @@ export const projects = [
   { id: 2,
     title: "Arabic Restaurant Website",
     description:
-      "Responsive Arabic restaurant website with online menu, order simulation, and contact form. Built using React, Styled-Components, and .NET Core APIs. Features RTL layout and smooth animations.",
+    "Responsive Arabic restaurant website with online menu, order simulation, and contact form. Built using React, Styled-Components, and .NET Core APIs. Features RTL layout and smooth animations.",
     image: happyResturant,
     alt: "Arabic Restaurant Website",
     link: "https://happiness-restaurant-pc32.vercel.app",
@@ -22,7 +22,7 @@ export const projects = [
     id: 3,
     title: "Portfolio Project",
     description:
-      "Showcases modern UI/UX design with animations, interactive components, and futuristic styling. Built with React,Bootstrap ,Framer Motion, and Styled-Components.",
+   "Showcases modern UI/UX design with animations, interactive components, and futuristic styling. Built with React,Bootstrap ,Framer Motion, and Styled-Components for frontend and firestore for backend database.",
     image:Portfolio  ,
     alt: "Portfolio Project",
     link: "#",
