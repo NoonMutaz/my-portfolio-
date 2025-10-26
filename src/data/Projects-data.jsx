@@ -18,15 +18,15 @@ description:
     alt: "Arabic Restaurant Website",
     link: "https://happiness-restaurant-pc32.vercel.app",
   },
-  // {
-  //   id: 3,
-  //   title: "Portfolio Project",
-  //   description:
-  //  "Showcases modern UI/UX design with animations, interactive components, and futuristic styling. Built with React,Bootstrap ,Framer Motion, and Styled-Components for frontend and firestore for backend database.",
-  //   image:Portfolio  ,
-  //   alt: "Portfolio Project",
-  //   link: "#",
-  // },
+  {
+    id: 3,
+    title: "Portfolio Project",
+    description:
+   "Showcases modern UI/UX design with animations, interactive components, and futuristic styling. Built with React,Bootstrap ,Framer Motion, and Styled-Components for frontend and firestore for backend database.",
+    image:Portfolio  ,
+    alt: "Portfolio Project",
+    link: "#",
+  },
   
 ];
  
