@@ -4,7 +4,7 @@
 // import styled from 'styled-components';
 import { Container,   Navbar, Nav, } from "react-bootstrap";
 import { colors } from '../../data/Colors-data';
-
+import cv from '../../assets/Noon_Almutaz_cv.pdf';  
 // import NavDropdown from 'react-bootstrap/NavDropdown';
 
  
@@ -47,7 +47,7 @@ function NavBar () {
               <Nav.Link href="#technologies" style={{ color: colors.white }}> 
                 Technologies
               </Nav.Link>
-              <Nav.Link href="/CV-NoonAlmutaz.pdf" download style={{ color: colors.white }}>
+              <Nav.Link href={cv} download style={{ color: colors.white }}>
                 Resume
               </Nav.Link>
 

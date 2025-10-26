@@ -3,8 +3,7 @@ import Home from "./pages/Home/Home";
 import NotFound from "./pages/Not-found/Not-found";
 import styled, { keyframes } from "styled-components";
 import { useState, useEffect } from "react";
-import Extra from "./pages/Extra/Extra";
-
+ 
 const Container = styled.div`
   background-color: #000000;
   height: 100vh;
@@ -94,7 +93,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="*" element={<NotFound />} />
-        <Route path="/extra" element={<Extra />} />
+       
       </Routes>
     </Container>
   );
