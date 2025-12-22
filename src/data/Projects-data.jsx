@@ -1,7 +1,7 @@
 //import DustyBazaar from '../assets/DustyBazaar.png';
 import happyResturant from '../assets/happyResturant.png';
 import VillaVista from '../assets/VillaVista.png';
-import Portfolio from '../assets/portfolio.png'
+//import Portfolio from '../assets/portfolio.png'
 export const projects = [
   // { id: 1,
   //   title: "Second-Hand Marketplace",
@@ -19,20 +19,12 @@ description:
     alt: "Arabic Restaurant Website",
     link: "https://happiness-restaurant-pc32.vercel.app",
   },
-  {
-    id: 3,
-    title: "Portfolio Project",
-    description:
-   "Showcases modern UI/UX design with animations, interactive components, and futuristic styling. Built with React,Bootstrap ,Framer Motion, and Styled-Components for frontend and firestore for backend database.",
-    image:Portfolio  ,
-    alt: "Portfolio Project",
-    link: "#",
-  },
+ 
     {
     id: 4,
     title: "Villa Vista Booking Project",
     description:
-   ".NET Clean Architecture، Entity Framework Core،eb-based booking system that allows users to browse available services/rooms, make reservations, and manage bookings efficiently. The system ensures data consistency, prevents double-booking, and supports easy management of users, bookings, and payments.",
+   ".NET Clean Architecture، Entity Framework Core،sql, web-based mvc booking system that allows users to browse available services/rooms, make reservations, and manage bookings efficiently. The system ensures data consistency, prevents double-booking, and supports easy management of users, bookings, and payments.",
     image:VillaVista  ,
     alt: "Villa Vista Booking Project",
     link: "https://noondev2002.bsite.net/",
