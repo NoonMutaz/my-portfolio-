@@ -1,5 +1,6 @@
-import DustyBazaar from '../assets/DustyBazaar.png';
+//import DustyBazaar from '../assets/DustyBazaar.png';
 import happyResturant from '../assets/happyResturant.png';
+import VillaVista from '../assets/VillaVista.png';
 import Portfolio from '../assets/portfolio.png'
 export const projects = [
   // { id: 1,
@@ -27,6 +28,14 @@ description:
     alt: "Portfolio Project",
     link: "#",
   },
-  
+    {
+    id: 4,
+    title: "Villa Vista Booking Project",
+    description:
+   ".NET Clean Architecture، Entity Framework Core،eb-based booking system that allows users to browse available services/rooms, make reservations, and manage bookings efficiently. The system ensures data consistency, prevents double-booking, and supports easy management of users, bookings, and payments.",
+    image:VillaVista  ,
+    alt: "Villa Vista Booking Project",
+    link: "https://noondev2002.bsite.net/",
+  },
 ];
  
