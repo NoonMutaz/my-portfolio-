@@ -14,7 +14,7 @@ const AboutText = styled.p`
              <Row className="align-items-center">
                   <Col md={6}>
                     <AboutText>
-                      I&apos;m a Software Engineer with B.Sc. in Software Engineering from University of Hail, with work experiance in Next.js and React.js ,where I collaborated closley with UI/UX 
+                      I&apos;m a Software Engineer with <strong> B.Sc. in Software Engineering</strong> from University of Hail, with work experiance in Next.js and React.js ,where I collaborated closley with UI/UX 
                       designers to build modren responsive web applications. 
                       I have contrubited to system analysis discussions, I have paricipated in meetings on project requirments and reviewing SRS documentation, As part of this I created diagrams such as  use case diagrams and activity diagrams.
                     </AboutText>
