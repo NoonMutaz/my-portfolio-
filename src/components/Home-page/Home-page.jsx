@@ -8,6 +8,7 @@ import Projects from "./Projects";
 import About from "./About";
 import Contact from "./Contact";
 import { useState } from "react";
+import ContactInfo from "./ContactInfo";
 
 const Section = styled.section`
   padding: 5rem 0;
@@ -54,6 +55,7 @@ function HomePage() {
       <Section id="contact">
         <Container>
           <SectionTitle>Contact Me</SectionTitle>
+          <ContactInfo  />
           <Contact />
         </Container>
       </Section>
