@@ -45,6 +45,13 @@ export default function Hero() {
     box-shadow: 0 0 25px ${colors.neon};
   }
 `;
+const InfoLink = styled.a`
+  color: ${colors.neon};
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+`;
     
   return (
     <div>
@@ -63,6 +70,10 @@ export default function Hero() {
             transition={{ duration: 1.2 }}
           >
             Software Engineer • Frontend Developer • Problem Solver • Lifelong Learner
+            <div> 
+          <InfoLink href="tel:+966581019574">phone </InfoLink> • <InfoLink href="mailto:noonalmutaz002@gmail.com"> Email</InfoLink> • <InfoLink href="https://www.linkedin.com/in/noon-almutaz-059a61267?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noreferrer">Linkedin</InfoLink> •  <InfoLink href="https://github.com/NoonMutaz" target="_blank" rel="noreferrer">github</InfoLink></div> 
+{/* <div>GitHub: <InfoLink href="https://github.com/NoonMutaz" target="_blank" rel="noreferrer">github</InfoLink></div> */}
+          
           </HeroSubtitleMotion>
         <HeroSubtitleMotion
             initial={{ opacity: 0, y: 20 }}

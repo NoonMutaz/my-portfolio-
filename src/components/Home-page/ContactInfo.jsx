@@ -24,8 +24,8 @@ function ContactInfo() {
     <InfoContainer>
       <div> Phone: <InfoLink href="tel:+966581019574">+966581019574</InfoLink></div>
       <div> Email: <InfoLink href="mailto:noonalmutaz002@gmail.com">noonalmutaz002@gmail.com</InfoLink></div>
-      <div> LinkedIn: <InfoLink href="https://linkedin.com/in/noon-almutaz-059a61267" target="_blank" rel="noreferrer">LinkedIn</InfoLink></div>
-      <div>GitHub: <InfoLink href="https://github.com/NoonMutaz" target="_blank" rel="noreferrer">github</InfoLink></div>
+      <div> LinkedIn: <InfoLink href="https://www.linkedin.com/in/noon-almutaz-059a61267?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noreferrer">Noon Almutaz</InfoLink></div>
+{/* <div>GitHub: <InfoLink href="https://github.com/NoonMutaz" target="_blank" rel="noreferrer">github</InfoLink></div> */}
 <div></div>
     </InfoContainer>
   );
