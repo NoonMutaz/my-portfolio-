@@ -1,22 +1,10 @@
- 
- 
 
 // import styled from 'styled-components';
 import { Container,   Navbar, Nav, } from "react-bootstrap";
 import { colors } from '../../data/Colors-data';
 import cv from '../../assets/Noon_Almutaz_cv.pdf';  
 // import NavDropdown from 'react-bootstrap/NavDropdown';
-
- 
- 
-
-
-
 function NavBar () {
-
-
-
-
 
   return (
   <Navbar
