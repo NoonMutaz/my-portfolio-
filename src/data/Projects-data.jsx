@@ -1,6 +1,7 @@
 //import DustyBazaar from '../assets/DustyBazaar.png';
 import happyResturant from '../assets/happyResturant.png';
-import VillaVista from '../assets/VillaVista.png';
+//import VillaVista from '../assets/VillaVista.png';
+import qaFlow from '../assets/qaFlow.png';
 //import Portfolio from '../assets/portfolio.png'
 export const projects = [
   // { id: 1,
@@ -19,15 +20,23 @@ description:
     alt: "Arabic Restaurant Website",
     link: "https://happiness-restaurant-pc32.vercel.app",
   },
- 
-    {
-    id: 4,
-    title: "Villa Vista Booking Project",
+     {
+    id: 3,
+    title: "QAflow",
     description:
-   ".NET Clean Architecture، Entity Framework Core،sql, web-based mvc booking system that allows users to browse available villas, make reservations, and manage bookings efficiently. The system ensures data consistency, prevents double-booking, and supports easy management of users, bookings, and payments , also has admin dashboard for management for bookings and villas .",
-    image:VillaVista  ,
-    alt: "Villa Vista Booking Project",
+   "Nextjs,typescript and tailwind bug tracking and QA system that help teamslog and prioritize and detect duplicate bugs using fusejs ,its not just tables and forms it has kpi and analytics",
+    image:qaFlow  ,
+    alt: "QAFlow Project",
     link: "https://noondev2002.bsite.net/",
   },
+  //   {
+  //   id: 4,
+  //   title: "Villa Vista Booking Project",
+  //   description:
+  //  ".NET Clean Architecture، Entity Framework Core،sql, web-based mvc booking system that allows users to browse available villas, make reservations, and manage bookings efficiently. The system ensures data consistency, prevents double-booking, and supports easy management of users, bookings, and payments , also has admin dashboard for management for bookings and villas .",
+  //   image:VillaVista  ,
+  //   alt: "Villa Vista Booking Project",
+  //   link: "https://noondev2002.bsite.net/",
+  // },
 ];
  
