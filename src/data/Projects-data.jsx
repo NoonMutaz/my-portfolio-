@@ -24,7 +24,7 @@ export const projects = [
     id: 3,
     title: "QAflow",
     description:
-   "Nextjs,typescript and tailwind bug tracking and QA system that help teamslog and prioritize and detect duplicate bugs using fusejs ,its not just tables and forms it has kpi and analytics",
+   "QAFlow is a modern bug tracking and QA platform built with Next.js, TypeScript, and Tailwind. It helps teams log and prioritize issues, automatically detect duplicates with Fuse.js, and monitor KPIs and analytics in a rich, interactive interface—far beyond simple tables and forms.",
     image:qaFlow  ,
     alt: "QAFlow Project",
     link: "https://noondev2002.bsite.net/",
