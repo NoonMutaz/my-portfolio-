@@ -27,7 +27,7 @@ export const projects = [
    "QAFlow is a modern bug tracking and QA platform built with Next.js, TypeScript, and Tailwind. It helps teams log and prioritize issues, automatically detect duplicates with Fuse.js, and monitor KPIs and analytics in a rich, interactive interface—far beyond simple tables and forms.",
     image:qaFlow  ,
     alt: "QAFlow Project",
-    link: "https://noondev2002.bsite.net/",
+    link: "https://qa-flow-eight.vercel.app/",
   },
   //   {
   //   id: 4,
