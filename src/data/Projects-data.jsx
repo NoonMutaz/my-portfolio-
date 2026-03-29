@@ -1,5 +1,5 @@
 //import DustyBazaar from '../assets/DustyBazaar.png';
-import happyResturant from '../assets/happyResturant.png';
+// import happyResturant from '../assets/happyResturant.png';
 //import VillaVista from '../assets/VillaVista.png';
 import qaFlow from '../assets/qaFlow.png';
 //import Portfolio from '../assets/portfolio.png'
