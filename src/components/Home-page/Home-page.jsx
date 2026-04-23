@@ -7,11 +7,19 @@ import Hero from "./Hero";
 import Projects from "./Projects";
 import About from "./About";
 import Contact from "./Contact";
-import { useState } from "react";
  
+const PageShell = styled.div`
+  background: transparent;
+  position: relative;
+  z-index: 1;
+`;
+
 const Section = styled.section`
   padding: 5rem 0;
-  background: ${(props) => props.bg || colors.black};
+  background: ${(props) => props.bg || "rgba(8, 8, 8, 0.55)"};
+  border-top: 1px solid rgba(0, 255, 127, 0.13);
+  border-bottom: 1px solid rgba(0, 255, 127, 0.13);
+  backdrop-filter: blur(2px);
 `;
 
 const SectionTitle = styled.h2`
@@ -25,18 +33,13 @@ const SectionTitle = styled.h2`
 
 
 function HomePage() {
-
-  const [expand, setExpanded] = useState(false);
-  const handleExpand = () => {
-    setExpanded(!expand);
-  }
   return (
-    <div style={{ backgroundColor: colors.black }}>
+    <PageShell>
       <Navbar />
       <Hero />
       <Section id="projects">
         <Container>
-          <Projects handleExpand={handleExpand} />
+          <Projects />
           <SectionTitle id="technologies" style={{ scrollMarginTop: "110px" }} className="mt-5">
             Technologies & Frameworks
           </SectionTitle>
@@ -44,7 +47,7 @@ function HomePage() {
         </Container>
       </Section>
 
-      <Section id="about" style={{scrollMarginTop: "80px"}} bg={colors.darkGray}>
+      <Section id="about" style={{ scrollMarginTop: "80px" }} bg="rgba(22, 22, 22, 0.7)">
         <Container>
           <SectionTitle>About Me</SectionTitle>
           <About />
@@ -54,11 +57,10 @@ function HomePage() {
       <Section id="contact">
         <Container>
           <SectionTitle>Contact Me</SectionTitle>
-     
           <Contact />
         </Container>
       </Section>
-    </div>
+    </PageShell>
   );
 }
 

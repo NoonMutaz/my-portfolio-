@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { Row, Col } from "react-bootstrap";
 import { motion } from "framer-motion";
-import { colors } from '../../data/Colors-data';
-import { projects } from '../../data/Projects-data';
+import { colors } from "../../data/Colors-data";
+import { projects } from "../../data/Projects-data";
 import { useState } from "react";
 
 const SectionTitle = styled.h2`
@@ -33,6 +33,32 @@ export default function Projects() {
       transform: translateY(-8px);
       box-shadow: 0 0 25px rgba(0, 255, 127, 0.5);
     }
+  `;
+  const ProjectActions = styled.div`
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.8rem;
+    align-items: center;
+  `;
+
+  const LinkButton = styled.button`
+    background: none;
+    border: none;
+    color: ${colors.neon};
+    font-size: 0.92rem;
+    padding: 0;
+    text-decoration: underline;
+    cursor: pointer;
+  `;
+
+  const ExpandButton = styled.button`
+    background: transparent;
+    border: 1px solid ${colors.neon};
+    color: ${colors.neon};
+    font-size: 0.85rem;
+    border-radius: 999px;
+    padding: 0.2rem 0.6rem;
+    cursor: pointer;
   `;
 
   const ProjectImage = styled.img`
@@ -74,28 +100,17 @@ export default function Projects() {
                 <ProjectContent isExpanded={isExpanded}>
                   <h4>{project.title}</h4>
                   <p>{project.description}</p>
-                  <button onClick={() => window.open(project.link, "_blank")} style={{ background: "none", border: "none", padding: 0, marginTop: "0.5rem" }}>
-                    <div
-                      style={{
-                        color: colors.neon,
-                        fontSize: "0.9rem",
-                      }}
+                  <ProjectActions>
+                    <LinkButton
+                      onClick={() => window.open(project.link, "_blank", "noopener,noreferrer")}
+                      aria-label={`Open ${project.title}`}
                     >
                       View Project
-                    </div>
-                  </button> <br></br> 
-                  <button onClick={() => toggleExpand(project.id)}>
-                    <div
-                      style={{
-                        color: colors.neon,
-                        fontSize: "0.9rem",
-                        marginTop: "0.5rem",
-                        background: "none",
-                      }}
-                    >
-                      {isExpanded ? "Show less ▲" : "Read more ▼"}
-                    </div>
-                  </button>
+                    </LinkButton>
+                    <ExpandButton onClick={() => toggleExpand(project.id)}>
+                      {isExpanded ? "Show less" : "Read more"}
+                    </ExpandButton>
+                  </ProjectActions>
                 </ProjectContent>
               </ProjectCard>
             </Col>

@@ -3,10 +3,17 @@ import Home from "./pages/Home/Home";
 import NotFound from "./pages/Not-found/Not-found";
 import styled, { keyframes } from "styled-components";
 import { useState, useEffect } from "react";
+import BackgroundParticles from "./components/common/BackgroundParticles";
  
 const Container = styled.div`
-  background-color: #000000;
-  height: 100vh;
+  background: radial-gradient(circle at top, #0f1820 0%, #060606 45%, #000000 100%);
+  min-height: 100vh;
+  position: relative;
+`;
+
+const ContentLayer = styled.div`
+  position: relative;
+  z-index: 1;
 `;
 
 // Spinner rotation animation
@@ -73,8 +80,8 @@ const App = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setLoading(false); // hide loader after 2.5 seconds
-    }, 2500);
+      setLoading(false);
+    }, 700);
 
     return () => clearTimeout(timer);
   }, []);
@@ -90,11 +97,13 @@ const App = () => {
 
   return (
     <Container>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="*" element={<NotFound />} />
-       
-      </Routes>
+      <BackgroundParticles />
+      <ContentLayer>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </ContentLayer>
     </Container>
   );
 };
