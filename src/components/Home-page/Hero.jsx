@@ -71,7 +71,8 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
           >
-            Hi, I&apos;m Noon Almutaz👩‍💻
+            Hi, I&apos;m Noon Almutaz
+            {/* 👩‍💻 */}
           </HeroTitleMotion>
           <HeroSubtitleMotion
             initial={{ opacity: 0, y: 20 }}

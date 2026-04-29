@@ -42,4 +42,18 @@ export   const frameworks = [
       image: "https://cdn.worldvectorlogo.com/logos/git-icon.svg",
       link:'https://git.com/'
     },
+    {
+      name: "SQL Server",
+      image: "https://upload.wikimedia.org/wikipedia/commons/8/87/Sql_data_base_with_logo.png",
+      link: "https://learn.microsoft.com/en-us/sql/sql-server/"
+    },
+    {
+      name: "Azure DevOps",
+    //  image: "https://tse3.mm.bing.net/th/id/OIP.3YDf3iRCK2MBx1eh5kjJdAAAAA?rs=1&pid=ImgDetMain&o=7&rm=3",
+      link: "https://dev.azure.com/"
+    }
+
+
+
+
   ];

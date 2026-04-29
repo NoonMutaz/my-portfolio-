@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Container } from "react-bootstrap";
+import { motion } from "framer-motion";
 import Frameworks from "./Frameworks";
 import Navbar from "./Navbar";
 import { colors } from "../../data/Colors-data";
@@ -15,51 +16,114 @@ const PageShell = styled.div`
 `;
 
 const Section = styled.section`
-  padding: 5rem 0;
+  padding: clamp(4rem, 7vw, 6rem) 0;
   background: ${(props) => props.bg || "rgba(8, 8, 8, 0.55)"};
-  border-top: 1px solid rgba(0, 255, 127, 0.13);
-  border-bottom: 1px solid rgba(0, 255, 127, 0.13);
-  backdrop-filter: blur(2px);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(4px);
 `;
 
 const SectionTitle = styled.h2`
   text-align: center;
   font-family: "Orbitron", sans-serif;
   font-weight: bold;
-  color: ${colors.neon};
-  margin-bottom: 3rem;
-  text-shadow: 0 0 10px ${colors.neon};
+  color: ${colors.white};
+  margin-bottom: 3.1rem;
+  font-size: clamp(1.55rem, 4vw, 2.2rem);
+  text-shadow: 0 0 14px rgba(0, 255, 127, 0.2);
 `;
 
+const SectionMotion = motion(Section);
+const TitleMotion = motion(SectionTitle);
+
+const sectionFadeUp = {
+  hidden: { opacity: 0, y: 36 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: "easeOut" },
+  },
+};
+
+const titleFade = {
+  hidden: { opacity: 0, y: 18 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.45, ease: "easeOut" },
+  },
+};
 
 function HomePage() {
   return (
     <PageShell>
       <Navbar />
       <Hero />
-      <Section id="projects">
+      <SectionMotion
+        id="projects"
+        variants={sectionFadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+      >
         <Container>
           <Projects />
-          <SectionTitle id="technologies" style={{ scrollMarginTop: "110px" }} className="mt-5">
+          <TitleMotion
+            id="technologies"
+            style={{ scrollMarginTop: "110px" }}
+            className="mt-5"
+            variants={titleFade}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.35 }}
+          >
             Technologies & Frameworks
-          </SectionTitle>
+          </TitleMotion>
           <Frameworks />
         </Container>
-      </Section>
+      </SectionMotion>
 
-      <Section id="about" style={{ scrollMarginTop: "80px" }} bg="rgba(22, 22, 22, 0.7)">
+      <SectionMotion
+        id="about"
+        style={{ scrollMarginTop: "80px" }}
+        bg="rgba(22, 22, 22, 0.7)"
+        variants={sectionFadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+      >
         <Container>
-          <SectionTitle>About Me</SectionTitle>
+          <TitleMotion
+            variants={titleFade}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.35 }}
+          >
+            About Me
+          </TitleMotion>
           <About />
         </Container>
-      </Section>
+      </SectionMotion>
 
-      <Section id="contact">
+      <SectionMotion
+        id="contact"
+        variants={sectionFadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+      >
         <Container>
-          <SectionTitle>Contact Me</SectionTitle>
+          <TitleMotion
+            variants={titleFade}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.35 }}
+          >
+            Contact Me
+          </TitleMotion>
           <Contact />
         </Container>
-      </Section>
+      </SectionMotion>
     </PageShell>
   );
 }

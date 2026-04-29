@@ -4,10 +4,10 @@ import { colors } from "../../data/Colors-data";
 import cv from "../../assets/Noon_Almutaz_cv.pdf";
 
 const GlassNavbar = styled(Navbar)`
-  background: rgba(20, 20, 20, 0.78);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(0, 255, 127, 0.3);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.35);
+  background: rgba(14, 14, 14, 0.74);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.33);
   padding: 0.85rem 1rem;
 `;
 
@@ -31,7 +31,7 @@ function NavBar() {
         fixed="top"
       >
         <Container>
-          <Navbar.Brand style={{ color: colors.neon, fontWeight: "bold", fontSize: "1.5rem" }} href="#home">
+          <Navbar.Brand style={{ color: colors.neon, fontWeight: "bold", fontSize: "1.35rem", letterSpacing: "0.01em" }} href="#home">
             Noon Almutaz
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="portfolio-navbar" />
