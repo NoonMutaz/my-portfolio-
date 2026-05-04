@@ -23,8 +23,8 @@ export const projects = [
      {
     id: 3,
     title: "QAflow",
-    description:
-   "QAFlow is a modern bug tracking and QA platform built with Next.js, TypeScript, and Tailwind. It helps teams log and prioritize issues, automatically detect duplicates with Fuse.js, and monitor KPIs and analytics in a rich, interactive interface—far beyond simple tables and forms.",
+   
+   description: " QAFlow is a cloud based QA issue tracking and project management system built using Nextjs, .NET Web APIs and deployed on Azure. It enables teams to organize testing workflows, track bugs across projects, and visualize issue status in real time. The system includes a structured project hierarchy, status based bug lifecycle management, and a duplicate detection mechanism that reduces redundant issue reporting by comparing issue similarity.",
     image:qaFlow  ,
     alt: "QAFlow Project",
     link: "https://qa-flow-eight.vercel.app/",
