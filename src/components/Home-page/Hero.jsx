@@ -79,7 +79,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2 }}
           >
-            Software Engineer - Frontend Developer - Problem Solver
+            Software Engineer - Software Developer - Problem Solver
             <ContactLinks>
               <InfoLink href="tel:+966581019574">Phone</InfoLink>
               <InfoLink href="mailto:noonalmutaz002@gmail.com">Email</InfoLink>

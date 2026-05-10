@@ -8,7 +8,7 @@ import Hero from "./Hero";
 import Projects from "./Projects";
 import About from "./About";
 import Contact from "./Contact";
- 
+import Certificates from "./Certificates";
 const PageShell = styled.div`
   background: transparent;
   position: relative;
@@ -104,6 +104,32 @@ function HomePage() {
           <About />
         </Container>
       </SectionMotion>
+
+
+      <SectionMotion
+  id="certificates"
+  bg="rgba(14, 14, 14, 0.75)"
+  variants={sectionFadeUp}
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true, amount: 0.2 }}
+>
+  <Container>
+    <TitleMotion
+      variants={titleFade}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.35 }}
+    >
+      Certifications & Courses
+    </TitleMotion>
+
+    <Certificates/>
+  </Container>
+</SectionMotion>
+
+
+
 
       <SectionMotion
         id="contact"

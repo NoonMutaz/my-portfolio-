@@ -5,17 +5,18 @@ import { motion } from "framer-motion";
 const AboutText = styled.p`
   color: #ddd;
   font-size: 1.05rem;
-  line-height: 1.85;
+  line-height: 1.9;
   margin-bottom: 0;
 `;
 
 const HighlightList = styled.ul`
   margin: 1rem 0 0;
-  padding-left: 1.1rem;
+  padding-left: 1.2rem;
   color: #d9d9d9;
 
   li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.65rem;
+    line-height: 1.7;
   }
 `;
 
@@ -37,18 +38,27 @@ export default function About() {
           transition={{ duration: 0.55, delay: 0.1 }}
         >
           <AboutText>
-            I&apos;m a Software Engineer with a{" "}
-            <strong>B.Sc. in Software Engineering</strong> from the University
-            of Hail. I focus on building modern, responsive products using
-            Next.js and React, and I enjoy turning UI/UX designs into clean,
-            accessible user experiences.
+            I’m a Software Engineer with a Bachelor’s degree in Software
+            Engineering from the University of Hail. I specialize in building
+            modern, responsive web applications using React and Next.js, with a
+            strong focus on performance, usability, and clean UI implementation.
           </AboutText>
+
           <HighlightList>
-            <li>Strong in React, Next.js, and component-based architecture</li>
-            <li>Comfortable with API integration and frontend state management</li>
-            <li>Passionate about clean code, performance, and usability</li>
+            <li>
+              Experienced in React, Next.js, TypeScript, and component-based
+              architecture
+            </li>
+            <li>
+              Skilled in frontend state management, API integration, and
+              responsive design
+            </li>
+            <li>
+              Passionate about writing scalable, maintainable, and clean code
+            </li>
           </HighlightList>
         </Col>
+
         <Col
           as={motion.div}
           md={6}
@@ -58,12 +68,26 @@ export default function About() {
           transition={{ duration: 0.55, delay: 0.2 }}
         >
           <AboutText>
-            I also contribute to requirements analysis and technical
-            documentation, including SRS review, use cases, activity diagrams,
-            and ERD design. Alongside frontend development, I have working
-            knowledge of .NET Core and Entity Framework, which helps me
-            collaborate effectively across full-stack teams.
+            Beyond frontend development, I also work with software analysis and
+            technical documentation, including SRS review, use cases, activity
+            diagrams, and ERD design. I have practical experience with .NET
+            Core and Entity Framework, allowing me to collaborate effectively
+            across full-stack development environments.
           </AboutText>
+
+          <HighlightList>
+            <li>
+              Built QA and bug-tracking systems with role-based access control
+            </li>
+            <li>
+              Comfortable working in Agile teams and collaborative development
+              workflows
+            </li>
+            <li>
+              Focused on creating products that balance functionality with user
+              experience
+            </li>
+          </HighlightList>
         </Col>
       </Row>
     </motion.div>
