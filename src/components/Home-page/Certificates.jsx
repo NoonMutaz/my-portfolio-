@@ -3,7 +3,30 @@ import { Row, Col } from "react-bootstrap";
 import { motion } from "framer-motion";
 
 
+const Section = styled.section`
+  padding: 60px 0;
+  background-color: #0b0f19; /* Assuming a dark theme based on your text colors */
+`;
 
+const SectionTitle = styled.h2`
+  color: white;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 2.5rem;
+  letter-spacing: -0.5px;
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 50px;
+    height: 4px;
+    background: #00ff7f;
+    border-radius: 2px;
+  }
+`;
 const CertCard = styled.div`
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -98,7 +121,15 @@ const certs = [
 
 export default function Certificates() {
   return (
-    <Row className="g-4">
+    <Row className="g-4"> 
+        <SectionTitle
+     // variants={titleFade}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.35 }}
+    >
+      Certifications & Courses
+    </SectionTitle>
        <Col
         md={6}
         as={motion.div}

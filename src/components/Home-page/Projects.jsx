@@ -7,10 +7,10 @@ import { colors } from "../../data/Colors-data";
 import { projects } from "../../data/Projects-data";
 import { useState } from "react";
 
-const Section = styled.section`
-  padding: 60px 0;
-  background-color: #0b0f19; /* Assuming a dark theme based on your text colors */
-`;
+// const Section = styled.section`
+//   padding: 60px 0;
+//   background-color: #0b0f19; /* Assuming a dark theme based on your text colors */
+// `;
 
 const SectionTitle = styled.h2`
   color: white;

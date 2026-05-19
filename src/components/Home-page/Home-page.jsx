@@ -24,15 +24,37 @@ const Section = styled.section`
   backdrop-filter: blur(4px);
 `;
 
+// const SectionTitle = styled.h2`
+//   text-align: center;
+//   font-family: "Orbitron", sans-serif;
+//   font-weight: bold;
+//   color: ${colors.white};
+//   margin-bottom: 3.1rem;
+//   font-size: clamp(1.55rem, 4vw, 2.2rem);
+//   text-shadow: 0 0 14px rgba(0, 255, 127, 0.2);
+// `;
+
+
 const SectionTitle = styled.h2`
-  text-align: center;
-  font-family: "Orbitron", sans-serif;
-  font-weight: bold;
-  color: ${colors.white};
-  margin-bottom: 3.1rem;
-  font-size: clamp(1.55rem, 4vw, 2.2rem);
-  text-shadow: 0 0 14px rgba(0, 255, 127, 0.2);
+  color: white;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 2.5rem;
+  letter-spacing: -0.5px;
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 50px;
+    height: 4px;
+    background: #00ff7f;
+    border-radius: 2px;
+  }
 `;
+
 
 const SectionMotion = motion(Section);
 const TitleMotion = motion(SectionTitle);
@@ -71,14 +93,7 @@ function HomePage() {
         viewport={{ once: true, amount: 0.2 }}
       >
         <Container>
-          <TitleMotion
-            variants={titleFade}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.35 }}
-          >
-            
-          </TitleMotion>
+     
           <Experience />
         </Container>
       </SectionMotion>
@@ -120,14 +135,14 @@ function HomePage() {
         viewport={{ once: true, amount: 0.2 }}
       >
         <Container>
-          <TitleMotion
+          <SectionTitle
             variants={titleFade}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.35 }}
           >
             About Me
-          </TitleMotion>
+          </SectionTitle>
           <About />
         </Container>
       </SectionMotion>
@@ -142,14 +157,14 @@ function HomePage() {
   viewport={{ once: true, amount: 0.2 }}
 >
   <Container>
-    <TitleMotion
+    {/* <TitleMotion
       variants={titleFade}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.35 }}
     >
       Certifications & Courses
-    </TitleMotion>
+    </TitleMotion> */}
 
     <Certificates/>
   </Container>
