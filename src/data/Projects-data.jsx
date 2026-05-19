@@ -1,6 +1,6 @@
 //import DustyBazaar from '../assets/DustyBazaar.png';
 // import happyResturant from '../assets/happyResturant.png';
-//import VillaVista from '../assets/VillaVista.png';
+import VillaVista from '../assets/VillaVista.png';
 import qaFlow from '../assets/qaFlow.png';
 import flutter from '../assets/flutter.mp4';
 //import Portfolio from '../assets/portfolio.png'
@@ -35,8 +35,8 @@ export const projects = [
     id: 4,
     title: "Villa Vista Booking Project",
     description:
-   ".NET Clean Architecture، Entity Framework Core،sql, web-based mvc booking system that allows users to browse available villas, make reservations, and manage bookings efficiently. The system ensures data consistency, prevents double-booking, and supports easy management of users, bookings, and payments , also has admin dashboard for management for bookings and villas .",
-    image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoh5SY3J2BsoecJ8TsxtGX-34_b5HCIG6PIA&s" ,
+   ".NET Clean Architecture، Entity Framework Core،sql,bootstrap, web based mvc booking system that allows users to browse available villas, make reservations, and manage bookings efficiently. The system ensures data consistency, prevents double-booking, and supports easy management of users, bookings, and payments , also has admin dashboard for management for bookings and villas .",
+    image: VillaVista ,
     alt: "Villa Vista Booking Project",
     link: "https://github.com/NoonMutaz/VillaVista-Villa-Booking-CleanArchitectureProject",
   },

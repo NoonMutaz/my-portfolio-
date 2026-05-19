@@ -9,6 +9,7 @@ import Projects from "./Projects";
 import About from "./About";
 import Contact from "./Contact";
 import Certificates from "./Certificates";
+import Experience from "./Experience";
 const PageShell = styled.div`
   background: transparent;
   position: relative;
@@ -59,6 +60,29 @@ function HomePage() {
     <PageShell>
       <Navbar />
       <Hero />
+
+      <SectionMotion
+        id="Experiance"
+        style={{ scrollMarginTop: "80px" }}
+        bg="rgba(22, 22, 22, 0.7)"
+        variants={sectionFadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+      >
+        <Container>
+          <TitleMotion
+            variants={titleFade}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.35 }}
+          >
+            
+          </TitleMotion>
+          <Experience />
+        </Container>
+      </SectionMotion>
+
       <SectionMotion
         id="projects"
         variants={sectionFadeUp}
@@ -82,6 +106,9 @@ function HomePage() {
           <Frameworks />
         </Container>
       </SectionMotion>
+
+
+
 
       <SectionMotion
         id="about"

@@ -7,13 +7,29 @@ import { colors } from "../../data/Colors-data";
 import { projects } from "../../data/Projects-data";
 import { useState } from "react";
 
+const Section = styled.section`
+  padding: 60px 0;
+  background-color: #0b0f19; /* Assuming a dark theme based on your text colors */
+`;
+
 const SectionTitle = styled.h2`
-  text-align: center;
-  font-family: "Orbitron", sans-serif;
-  font-weight: bold;
-  color: ${colors.neon};
-  margin-bottom: 3rem;
-  text-shadow: 0 0 10px ${colors.neon};
+  color: white;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 2.5rem;
+  letter-spacing: -0.5px;
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 50px;
+    height: 4px;
+    background: #00ff7f;
+    border-radius: 2px;
+  }
 `;
 
 const SectionCopy = styled.p`
