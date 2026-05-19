@@ -30,7 +30,7 @@ export   const frameworks = [
       link: "https://www.java.com/",
     },
     {
-      name: ".NET Core",
+      name: "ASP.NET Core",
       image: "https://upload.wikimedia.org/wikipedia/commons/e/ee/.NET_Core_Logo.svg",
       link: "https://dotnet.microsoft.com/en-us/",
     },
@@ -51,6 +51,21 @@ export   const frameworks = [
       name: "Azure DevOps",
     //  image: "https://tse3.mm.bing.net/th/id/OIP.3YDf3iRCK2MBx1eh5kjJdAAAAA?rs=1&pid=ImgDetMain&o=7&rm=3",
       link: "https://dev.azure.com/"
+    },
+    {
+      name: "Jira",
+      image: "https://cdn.worldvectorlogo.com/logos/jira-icon-1.svg",
+      link: "https://www.atlassian.com/software/jira"
+    },
+    {
+      name: "Flutter",
+      image: "https://cdn.worldvectorlogo.com/logos/flutter-icon.svg",
+      link: "https://flutter.dev/"
+    },
+    {
+      name: "Dart",
+      image: "https://cdn.worldvectorlogo.com/logos/dart-logo.svg",
+      link: "https://dart.dev/"
     }
 
 
