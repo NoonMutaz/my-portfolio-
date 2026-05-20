@@ -107,7 +107,14 @@ function HomePage() {
   return (
     <PageShell>
       <Navbar />
+      <Container className="mt-3">
+      
       <Hero />
+  </Container>
+
+ <Container>
+   <Experience />
+  </Container>
 
       {/* Experience Section */}
       <Section style={{ scrollMarginTop: "80px" }}>
@@ -118,24 +125,24 @@ function HomePage() {
             viewport={{ once: true, amount: 0.15 }}
             variants={containerVariants}
           >
-            <Experience />
+          
           </motion.div>
         </Container>
       </Section>
 
       {/* Projects Section */}
-      <Section style={{ scrollMarginTop: "80px" }}>
-        <Container>
-          <motion.div
+      {/* <Section style={{ scrollMarginTop: "80px" }} > */}
+        <Container id="projects">
+          {/* <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.15 }}
             variants={containerVariants}
-          >
-            <Projects />
-          </motion.div>
+          > */}
+            <Projects  />
+          {/* </motion.div> */}
         </Container>
-      </Section>
+      {/* </Section> */}
 
       {/* Technologies Section */}
       <Section style={{ scrollMarginTop: "80px" }}>

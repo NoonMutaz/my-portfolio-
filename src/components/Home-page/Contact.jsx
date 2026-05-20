@@ -11,31 +11,82 @@ import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 
 const ContactForm = styled(Form)`
-  background: linear-gradient(160deg, rgba(28, 28, 28, 0.88), rgba(14, 14, 14, 0.86));
-  border: 1px solid rgba(0, 255, 127, 0.24);
-  padding: 2rem;
-  border-radius: 18px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  position: relative;
+  overflow: hidden;
+
+  background: rgba(10, 10, 10, 0.52);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  padding: clamp(1.8rem, 4vw, 3rem);
+  border-radius: 28px;
+
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(
+        135deg,
+        rgba(0, 255, 127, 0.04),
+        transparent 35%
+      );
+    pointer-events: none;
+  }
 
   label {
-    color: ${colors.neon};
-    font-weight: bold;
+    color: rgba(255, 255, 255, 0.82);
+    font-weight: 600;
+    margin-bottom: 0.55rem;
+    font-size: 0.95rem;
+    letter-spacing: 0.3px;
   }
 
   input,
   textarea {
-    background: rgba(255, 255, 255, 0.96);
-    border: 1px solid #3f3f3f;
-    color: #2b2b2b;
-    border-radius: 8px;
-    padding: 0.6rem 1rem;
-    margin-bottom: 1rem;
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+
+    color: white !important;
+
+    border-radius: 14px;
+    padding: 0.9rem 1rem;
+
+    transition: all 0.25s ease;
+
+    backdrop-filter: blur(4px);
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.38);
+    }
 
     &:focus {
-      border-color: ${colors.neon};
-      box-shadow: 0 0 10px ${colors.neon};
+      background: rgba(255, 255, 255, 0.08) !important;
+
+      border-color: rgba(0, 255, 127, 0.45) !important;
+
+      box-shadow:
+        0 0 0 4px rgba(0, 255, 127, 0.08),
+        0 0 18px rgba(0, 255, 127, 0.12);
+
       outline: none;
     }
+  }
+
+  textarea {
+    resize: none;
+    min-height: 140px;
+  }
+
+  .form-group,
+  .mb-3 {
+    margin-bottom: 1.3rem;
   }
 `;
 

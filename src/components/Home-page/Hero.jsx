@@ -56,8 +56,7 @@ const ContentWrapper = styled(motion.div)`
   margin: 0 auto;
 
   padding: clamp(2rem, 4vw, 3.5rem);
-
-  background: rgba(8, 8, 8, 0.45);
+  background-color:#0B0F1959;
   border: 1px solid rgba(255, 255, 255, 0.08);
 
   /* backdrop-filter: blur(10px);
@@ -163,8 +162,8 @@ const ContentWrapper = styled(motion.div)`
     }
   `;
 
-  const NeonButton = styled(motion(Button))`
-    background: ${colors.neon};
+  const NeonButton = styled(motion.Button)`
+    background: #229A32FF;
     color: ${colors.black};
     border: none;
     padding: 0.85rem 2.8rem;
@@ -189,13 +188,16 @@ const ContentWrapper = styled(motion.div)`
       height: 100%;
       background: rgba(255, 255, 255, 0.1);
       transition: left 0.5s ease;
+      
     }
     
     &:hover {
       transform: translateY(-3px);
       box-shadow: 
-        0 8px 30px rgba(0, 255, 127, 0.4),
+        0 8px 30px rgba(0, 265, 167, 0.2),
         inset 0 -2px 8px rgba(0, 0, 0, 0.15);
+        background-color:${colors.neon};;
+ 
       
       &::before {
         left: 100%;
@@ -288,7 +290,7 @@ const ContentWrapper = styled(motion.div)`
             </ContactLinks>
           </motion.div>
 
-          <motion.div variants={itemVariants}>
+        <a href="#projects">  <motion.div variants={itemVariants}   >
             <NeonButton 
               href="#projects"
               whileHover={{ scale: 1.05 }}
@@ -296,7 +298,7 @@ const ContentWrapper = styled(motion.div)`
             >
               Explore My Work
             </NeonButton>
-          </motion.div>
+          </motion.div></a>
         </ContentWrapper>
       </Container>
     </HeroSection>
