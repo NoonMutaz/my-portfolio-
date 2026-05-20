@@ -5,7 +5,7 @@ import { colors } from "../../data/Colors-data";
 
 export default function Hero() {
   const HeroSection = styled.section`
-    min-height: 100vh;
+  //  min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -48,11 +48,48 @@ export default function Hero() {
     }
   `;
 
-  const ContentWrapper = styled(motion.div)`
-    position: relative;
-    z-index: 2;
-    width: 100%;
-  `;
+const ContentWrapper = styled(motion.div)`
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+
+  padding: clamp(2rem, 4vw, 3.5rem);
+
+  background: rgba(8, 8, 8, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  /* backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); */
+
+  border-radius: 28px;
+
+  box-shadow:
+    0 8px 40px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+  overflow: hidden;
+
+  /* subtle glow */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(
+        135deg,
+        rgba(0, 255, 127, 0.04),
+        transparent 40%
+      );
+    pointer-events: none;
+  }
+
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+    border-radius: 22px;
+  }
+`;
 
   const HeroTitle = styled.h1`
     font-family: "Orbitron", sans-serif;
@@ -63,9 +100,9 @@ export default function Hero() {
     margin-bottom: 1.2rem;
     
     /* Elegant glow effect */
-    text-shadow: 
-      0 0 20px ${colors.neon},
-      0 0 40px rgba(0, 255, 127, 0.3);
+    text-shadow:
+  0 0 10px rgba(0, 255, 127, 0.5),
+  0 0 20px rgba(0, 205, 127, 0.18);
     
     line-height: 1.1;
     
@@ -76,7 +113,7 @@ export default function Hero() {
 
   const HeroSubtitle = styled.p`
     font-size: clamp(0.95rem, 2.2vw, 1.3rem);
-    color: #d4d4d4;
+    color: rgba(255, 255, 255, 0.82);
     margin: 1.5rem 0;
     font-weight: 400;
     letter-spacing: 0.3px;

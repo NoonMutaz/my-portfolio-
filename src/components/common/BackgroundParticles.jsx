@@ -32,7 +32,7 @@ export default function BackgroundParticles() {
         vy: (Math.random() - 0.5) * 0.25,
         r: Math.random() * 2.2 + 0.4,
         baseR: 0,
-        opacity: Math.random() * 0.4 + 0.3,
+        opacity: Math.random() * 0.6 + 0.7,
         pulseSpeed: Math.random() * 0.02 + 0.005,
         pulseAmount: Math.random() * 0.6 + 0.3,
       }));
@@ -96,7 +96,7 @@ export default function BackgroundParticles() {
     );
         // Draw particle with glow
      //   const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, pulse * 3);
-     const glowRadius = Math.max(0.5, pulse * 3);
+     const glowRadius = Math.max(0.3, pulse * 3);
 
 const gradient = ctx.createRadialGradient(
   p.x,
