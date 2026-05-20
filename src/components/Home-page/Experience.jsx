@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 // Section Container for proper spacing
 const Section = styled.section`
   padding: 60px 0;
-  background-color: #0b0f19; /* Assuming a dark theme based on your text colors */
+  background-color:#0B0F1959;
 `;
 
 const SectionTitle = styled.h2`
@@ -47,7 +47,7 @@ const ExperienceCard = styled(motion.div)`
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at top left, rgba(0, 255, 127, 0.03), transparent 70%);
+    background: radial-gradient(circle at top left, rgba(0, 255, 127, 0.03), transparent 40%);
     pointer-events: none;
   }
 
@@ -134,16 +134,10 @@ export default function Experience() {
           {experiences.map((exp, index) => (
             <Col key={index} lg={4} md={6} sm={12}>
               <ExperienceCard
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                whileHover={{ y: -6 }} // Smooth framer-motion transition instead of CSS transform mix
-                transition={{
-                  type: "spring",
-                  stiffness: 100,
-                  damping: 15,
-                  delay: index * 0.1,
-                }}
+                 
+                 initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
               >
                 <CardHeader>
                   <Company>{exp.company}</Company>

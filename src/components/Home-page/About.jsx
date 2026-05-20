@@ -7,6 +7,7 @@ const AboutText = styled.p`
   font-size: 1.05rem;
   line-height: 1.9;
   margin-bottom: 0;
+
 `;
 
 const HighlightList = styled.ul`
@@ -28,7 +29,7 @@ export default function About() {
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     > 
-      <Row className="align-items-center g-4">
+      <Row className="align-items-center g-4 " style={{}}>
         <Col
           as={motion.div}
           md={6}

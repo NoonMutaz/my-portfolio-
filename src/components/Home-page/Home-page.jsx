@@ -3,13 +3,13 @@ import { Container } from "react-bootstrap";
 import { motion } from "framer-motion";
 import Frameworks from "./Frameworks";
 import Navbar from "./Navbar";
-import { colors } from "../../data/Colors-data";
 import Hero from "./Hero";
 import Projects from "./Projects";
 import About from "./About";
 import Contact from "./Contact";
 import Certificates from "./Certificates";
 import Experience from "./Experience";
+
 const PageShell = styled.div`
   background: transparent;
   position: relative;
@@ -17,63 +17,89 @@ const PageShell = styled.div`
 `;
 
 const Section = styled.section`
-  padding: clamp(4rem, 7vw, 6rem) 0;
+  padding: clamp(5rem, 8vw, 7rem) 0;
   background: ${(props) => props.bg || "rgba(8, 8, 8, 0.55)"};
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(4px);
-`;
-
-// const SectionTitle = styled.h2`
-//   text-align: center;
-//   font-family: "Orbitron", sans-serif;
-//   font-weight: bold;
-//   color: ${colors.white};
-//   margin-bottom: 3.1rem;
-//   font-size: clamp(1.55rem, 4vw, 2.2rem);
-//   text-shadow: 0 0 14px rgba(0, 255, 127, 0.2);
-// `;
-
-
-const SectionTitle = styled.h2`
-  color: white;
-  font-size: 2rem;
-  font-weight: 800;
-  margin-bottom: 2.5rem;
-  letter-spacing: -0.5px;
   position: relative;
-  
-  &::after {
+
+  &::before {
     content: '';
     position: absolute;
-    bottom: -10px;
+    top: 0;
     left: 0;
-    width: 50px;
-    height: 4px;
-    background: #00ff7f;
-    border-radius: 2px;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(0, 255, 127, 0.1),
+      transparent
+    );
   }
 `;
 
+const SectionTitle = styled.h2`
+  color: white;
+  font-size: clamp(1.8rem, 4vw, 2.2rem);
+  font-weight: 800;
+  margin-bottom: clamp(1.8rem, 3vw, 2.5rem);
+  letter-spacing: -0.8px;
+  position: relative;
+  line-height: 1.2;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: calc(-1 * clamp(0.6rem, 1.5vw, 0.9rem));
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(
+      to right,
+      #00ff7f,
+      rgba(0, 255, 127, 0)
+    );
+    border-radius: 2px;
+  }
+`;
 
 const SectionMotion = motion(Section);
 const TitleMotion = motion(SectionTitle);
 
 const sectionFadeUp = {
-  hidden: { opacity: 0, y: 36 },
+  hidden: { opacity: 0, y: 40 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: "easeOut" },
+    transition: {
+      duration: 0.8,
+      ease: [0.34, 1.56, 0.64, 1],
+    },
   },
 };
 
 const titleFade = {
-  hidden: { opacity: 0, y: 18 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.45, ease: "easeOut" },
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  },
+};
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.1,
+    },
   },
 };
 
@@ -83,34 +109,43 @@ function HomePage() {
       <Navbar />
       <Hero />
 
-      <SectionMotion
-        id="Experiance"
-        style={{ scrollMarginTop: "80px" }}
-        bg="rgba(22, 22, 22, 0.7)"
-        variants={sectionFadeUp}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-      >
+      {/* Experience Section */}
+      <Section style={{ scrollMarginTop: "80px" }}>
         <Container>
-     
-          <Experience />
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            variants={containerVariants}
+          >
+            <Experience />
+          </motion.div>
         </Container>
-      </SectionMotion>
+      </Section>
 
-      <SectionMotion
-        id="projects"
-        variants={sectionFadeUp}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-      >
+      {/* Projects Section */}
+      <Section style={{ scrollMarginTop: "80px" }}>
         <Container>
-          <Projects />
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            variants={containerVariants}
+          >
+            <Projects />
+          </motion.div>
+        </Container>
+      </Section>
+
+      {/* Technologies Section */}
+      <Section style={{ scrollMarginTop: "80px" }}>
+        <Container>
           <TitleMotion
             id="technologies"
-            style={{ scrollMarginTop: "110px" }}
-            className="mt-5"
+            style={{
+              scrollMarginTop: "110px",
+              marginBottom: "2.5rem",
+            }}
             variants={titleFade}
             initial="hidden"
             whileInView="visible"
@@ -118,67 +153,59 @@ function HomePage() {
           >
             Technologies & Frameworks
           </TitleMotion>
+
           <Frameworks />
         </Container>
-      </SectionMotion>
+      </Section>
 
-
-
-
-      <SectionMotion
+      {/* About Section */}
+      <Section
         id="about"
         style={{ scrollMarginTop: "80px" }}
-        bg="rgba(22, 22, 22, 0.7)"
-        variants={sectionFadeUp}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
       >
         <Container>
-          <SectionTitle
+          <TitleMotion
             variants={titleFade}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.35 }}
           >
             About Me
-          </SectionTitle>
-          <About />
+          </TitleMotion>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={containerVariants}
+          >
+            <About />
+          </motion.div>
         </Container>
-      </SectionMotion>
+      </Section>
 
+      {/* Certificates Section */}
+      <Section style={{ scrollMarginTop: "80px" }}>
+        <Container>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            variants={containerVariants}
+          >
+            <Certificates />
+          </motion.div>
+        </Container>
+      </Section>
 
-      <SectionMotion
-  id="certificates"
-  bg="rgba(14, 14, 14, 0.75)"
-  variants={sectionFadeUp}
-  initial="hidden"
-  whileInView="visible"
-  viewport={{ once: true, amount: 0.2 }}
->
-  <Container>
-    {/* <TitleMotion
-      variants={titleFade}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.35 }}
-    >
-      Certifications & Courses
-    </TitleMotion> */}
-
-    <Certificates/>
-  </Container>
-</SectionMotion>
-
-
-
-
+      {/* Contact Section */}
       <SectionMotion
         id="contact"
         variants={sectionFadeUp}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
+        style={{ scrollMarginTop: "80px" }}
       >
         <Container>
           <TitleMotion
@@ -189,7 +216,15 @@ function HomePage() {
           >
             Contact Me
           </TitleMotion>
-          <Contact />
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={containerVariants}
+          >
+            <Contact />
+          </motion.div>
         </Container>
       </SectionMotion>
     </PageShell>

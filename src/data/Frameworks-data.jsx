@@ -66,6 +66,10 @@ export   const frameworks = [
       name: "Dart",
       image: "https://cdn.worldvectorlogo.com/logos/dart-logo.svg",
       link: "https://dart.dev/"
+    },
+    {
+      name:"TanStack",
+      
     }
 
 
