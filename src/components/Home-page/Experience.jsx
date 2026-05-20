@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 // Section Container for proper spacing
 const Section = styled.section`
   padding: 60px 0;
-  background-color:#0B0F1959;
+  background-color: #0B0F1959;
 `;
 
 const SectionTitle = styled.h2`
@@ -124,20 +124,47 @@ const experiences = [
   },
 ];
 
+// Animation presets for sequential grid loading
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.25, 1, 0.5, 1],
+    },
+  },
+};
+
 export default function Experience() {
   return (
     <Section>
       <Container>
         <SectionTitle>Work Experience</SectionTitle>
-        {/* Changed g-4 to lg={4} to beautifully align 3 cards in a clean single row on desktop */}
-        <Row className="g-4">
+        <Row 
+          as={motion.div}
+          className="g-4"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+        >
           {experiences.map((exp, index) => (
             <Col key={index} lg={4} md={6} sm={12}>
               <ExperienceCard
-                 
-                 initial={{ opacity: 0, y: -50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
+                variants={cardVariants}
+                whileHover={{ y: -6, transition: { duration: 0.2 } }}
               >
                 <CardHeader>
                   <Company>{exp.company}</Company>
