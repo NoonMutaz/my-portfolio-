@@ -87,17 +87,33 @@ export default function BackgroundParticles() {
         }
 
         // Pulse animation
-        const pulse = Math.sin(Date.now() * p.pulseSpeed * 0.001) * p.pulseAmount + p.baseR;
-
+     //   const pulse = Math.sin(Date.now() * p.pulseSpeed * 0.001) * p.pulseAmount + p.baseR;
+     const pulse = Math.max(
+      0.15,
+      Math.sin(Date.now() * p.pulseSpeed * 0.001) *
+        p.pulseAmount +
+        p.baseR
+    );
         // Draw particle with glow
-        const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, pulse * 3);
+     //   const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, pulse * 3);
+     const glowRadius = Math.max(0.5, pulse * 3);
+
+const gradient = ctx.createRadialGradient(
+  p.x,
+  p.y,
+  0,
+  p.x,
+  p.y,
+  glowRadius
+);
         gradient.addColorStop(0, `rgba(0, 255, 127, ${p.opacity * 0.6})`);
         gradient.addColorStop(0.5, `rgba(0, 255, 127, ${p.opacity * 0.2})`);
         gradient.addColorStop(1, "rgba(0, 255, 127, 0)");
 
         ctx.fillStyle = gradient;
         ctx.beginPath();
-        ctx.arc(p.x, p.y, pulse * 3, 0, Math.PI * 2);
+       // ctx.arc(p.x, p.y, pulse * 3, 0, Math.PI * 2);
+       ctx.arc(p.x, p.y, glowRadius, 0, Math.PI * 2);
         ctx.fill();
 
         // Core particle
