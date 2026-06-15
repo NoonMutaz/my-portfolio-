@@ -9,6 +9,8 @@ import About from "./About";
 import Contact from "./Contact";
 import Certificates from "./Certificates";
 import Experience from "./Experience";
+import Footer from "../common/Footer";
+import BackToTop from "../common/BackToTop";
 
 const PageShell = styled.div`
   background: transparent;
@@ -23,9 +25,10 @@ const Section = styled.section`
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(4px);
   position: relative;
+  scroll-margin-top: 88px;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -50,17 +53,13 @@ const SectionTitle = styled.h2`
   line-height: 1.2;
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: calc(-1 * clamp(0.6rem, 1.5vw, 0.9rem));
     left: 0;
     width: 50px;
     height: 3px;
-    background: linear-gradient(
-      to right,
-      #00ff7f,
-      rgba(0, 255, 127, 0)
-    );
+    background: linear-gradient(to right, #00ff7f, rgba(0, 255, 127, 0));
     border-radius: 2px;
   }
 `;
@@ -107,17 +106,13 @@ function HomePage() {
   return (
     <PageShell>
       <Navbar />
-      <Container className="mt-3">
-      
-      <Hero />
-  </Container>
+      <BackToTop />
 
- <Container>
-   <Experience />
-  </Container>
+      <Container className="pt-5 mt-2">
+        <Hero />
+      </Container>
 
-      {/* Experience Section */}
-      <Section style={{ scrollMarginTop: "80px" }}>
+      <Section id="experience">
         <Container>
           <motion.div
             initial="hidden"
@@ -125,34 +120,27 @@ function HomePage() {
             viewport={{ once: true, amount: 0.15 }}
             variants={containerVariants}
           >
-          
+            <Experience />
           </motion.div>
         </Container>
       </Section>
 
-      {/* Projects Section */}
-      {/* <Section style={{ scrollMarginTop: "80px" }} > */}
-        <Container id="projects">
-          {/* <motion.div
+      <Section id="projects">
+        <Container>
+          <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.15 }}
             variants={containerVariants}
-          > */}
-            <Projects  />
-          {/* </motion.div> */}
+          >
+            <Projects />
+          </motion.div>
         </Container>
-      {/* </Section> */}
+      </Section>
 
-      {/* Technologies Section */}
-      <Section style={{ scrollMarginTop: "80px" }}>
+      <Section id="technologies">
         <Container>
           <TitleMotion
-            id="technologies"
-            style={{
-              scrollMarginTop: "110px",
-              marginBottom: "2.5rem",
-            }}
             variants={titleFade}
             initial="hidden"
             whileInView="visible"
@@ -160,16 +148,11 @@ function HomePage() {
           >
             Technologies & Frameworks
           </TitleMotion>
-
           <Frameworks />
         </Container>
       </Section>
 
-      {/* About Section */}
-      <Section
-        id="about"
-        style={{ scrollMarginTop: "80px" }}
-      >
+      <Section id="about">
         <Container>
           <TitleMotion
             variants={titleFade}
@@ -179,7 +162,6 @@ function HomePage() {
           >
             About Me
           </TitleMotion>
-
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -191,8 +173,7 @@ function HomePage() {
         </Container>
       </Section>
 
-      {/* Certificates Section */}
-      <Section style={{ scrollMarginTop: "80px" }}>
+      <Section>
         <Container>
           <motion.div
             initial="hidden"
@@ -205,14 +186,12 @@ function HomePage() {
         </Container>
       </Section>
 
-      {/* Contact Section */}
       <SectionMotion
         id="contact"
         variants={sectionFadeUp}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
-        style={{ scrollMarginTop: "80px" }}
       >
         <Container>
           <TitleMotion
@@ -223,7 +202,6 @@ function HomePage() {
           >
             Contact Me
           </TitleMotion>
-
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -234,6 +212,8 @@ function HomePage() {
           </motion.div>
         </Container>
       </SectionMotion>
+
+      <Footer />
     </PageShell>
   );
 }

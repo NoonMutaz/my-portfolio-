@@ -2,6 +2,19 @@ import styled from "styled-components";
 import { Row, Col } from "react-bootstrap";
 import { motion } from "framer-motion";
 
+const AboutCard = styled.div`
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  padding: clamp(1.5rem, 3vw, 2rem);
+  height: 100%;
+  transition: border-color 0.3s ease;
+
+  &:hover {
+    border-color: rgba(0, 255, 127, 0.15);
+  }
+`;
+
 const AboutText = styled.p`
   color: #ddd;
   font-size: 1.05rem;
@@ -38,6 +51,7 @@ export default function About() {
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.55, delay: 0.1 }}
         >
+          <AboutCard>
           <AboutText>
             I’m a Software Engineer with a Bachelor’s degree in Software
             Engineering from the University of Hail. I specialize in building
@@ -58,6 +72,7 @@ export default function About() {
               Passionate about writing scalable, maintainable, and clean code
             </li>
           </HighlightList>
+          </AboutCard>
         </Col>
 
         <Col
@@ -68,6 +83,7 @@ export default function About() {
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.55, delay: 0.2 }}
         >
+          <AboutCard>
           <AboutText>
             Beyond frontend development, I also work with software analysis and
             technical documentation, including SRS review, use cases, activity
@@ -89,6 +105,7 @@ export default function About() {
               experience
             </li>
           </HighlightList>
+          </AboutCard>
         </Col>
       </Row>
     </motion.div>

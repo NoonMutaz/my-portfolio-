@@ -1,128 +1,180 @@
-import styled from "styled-components";
-import { motion } from "framer-motion";
+import { useState } from "react";
+import styled, { css } from "styled-components";
 import { frameworks } from "../../data/Frameworks-data";
-
-const colors = { white: "#ffffff", neon: "#00ff7f" };
+import { colors } from "../../data/Colors-data";
 
 const MarqueeContainer = styled.div`
   overflow: hidden;
-  backdrop-filter: blur(10px);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  padding: 2.5rem 0;
+  padding: 1.5rem 0;
   width: 100%;
-  position: relative;
-  display: flex;
-  align-items: center;
+  background-color:rgba(0, 255, 127, 0.07);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   background: linear-gradient(
     to bottom,
-    rgba(0, 255, 127, 0.02),
+    rgba(0, 255, 127, 0.03),
     transparent,
-    rgba(0, 255, 127, 0.02)
+    rgba(0, 255, 127, 0.03)
   );
-
-  /* Mask edges for smooth fade */
   -webkit-mask-image: linear-gradient(
     to right,
     transparent 0%,
-    black 5%,
-    black 95%,
+    black 6%,
+    black 94%,
     transparent 100%
   );
   mask-image: linear-gradient(
     to right,
     transparent 0%,
-    black 5%,
-    black 95%,
+    black 6%,
+    black 94%,
     transparent 100%
   );
 `;
 
-const MarqueeTrack = styled(motion.div)`
+const MarqueeTrack = styled.div`
   display: flex;
   gap: 3.5rem;
   align-items: center;
-  flex-wrap: nowrap;
   width: max-content;
+  animation: marquee-scroll 26s linear infinite;
+  animation-play-state: ${(props) => (props.$paused ? "paused" : "running")};
+
+  @keyframes marquee-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    gap: 1.5rem;
+  }
 `;
 
-const TickerItem = styled(motion.a)`
-  font-size: clamp(1rem, 2vw, 1.3rem);
-  font-weight: 700;
-  color: ${colors.white};
-  text-decoration: none;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  cursor: pointer;
-  position: relative;
-  white-space: nowrap;
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  padding: 0.5rem 0;
+const itemBase = css`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
 
-  /* Glowing effect on hover */
   &:hover {
-    color: ${colors.neon};
-    text-shadow: 
-      0 0 12px ${colors.neon},
-      0 0 24px rgba(0, 255, 127, 0.4);
-  }
-
-  /* Separator dot between items */
-  &::after {
-    content: "•";
-    position: absolute;
-    right: -1.95rem;
-    color: rgba(0, 255, 127, 0.4);
-    font-size: 0.9rem;
-    font-weight: 300;
-  }
-
-  /* Remove dot from last item */
-  &:last-child::after {
-    display: none;
+    transform: scale(1.08);
   }
 `;
 
-export default function FrameworksTicker() {
-  return (
-    <MarqueeContainer>
-      <MarqueeTrack
-        as={motion.div}
-        animate={{ x: ["0%", "-50%"] }}
-        transition={{
-          duration: 18,
-          repeat: Infinity,
-          repeatType: "loop",
-          ease: "linear",
-        }}
+const ImageItem = styled.a`
+  ${itemBase}
+  text-decoration: none;
+`;
+
+const ImageWrap = styled.div`
+  ${itemBase}
+`;
+
+const Image = styled.img`
+  height: 44px;
+  width: auto;
+  max-width: 72px;
+  object-fit: contain;
+  filter: grayscale(15%) brightness(1.05);
+  transition: filter 0.25s ease;
+
+  ${ImageItem}:hover &,
+  ${ImageWrap}:hover & {
+    filter: none;
+  }
+`;
+
+const NamePill = styled.span`
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: rgba(0, 255, 127, 4.35);
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+  padding: 0.55rem 1.25rem;
+  border-radius: 50px;
+  //border: 1px solid rgba(0, 255, 127, 0.28);
+ // background: rgba(0, 255, 127, 0.07);
+  transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+`;
+
+const NameLink = styled.a`
+  ${itemBase}
+  text-decoration: none;
+
+  &:hover ${NamePill} {
+    color: ${colors.neon};
+    border-color: rgba(0, 255, 127, 0.5);
+    background: rgba(0, 255, 127, 0.12);
+  }
+`;
+
+const NameStatic = styled.div`
+  ${itemBase}
+`;
+
+function renderItem(fw, idx) {
+  if (fw.image) {
+    if (fw.link) {
+      return (
+        <ImageItem
+          key={idx}
+          href={fw.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={fw.name}
+        >
+          <Image src={fw.image} alt={fw.name} loading="lazy" />
+        </ImageItem>
+      );
+    }
+    return (
+      <ImageWrap key={idx} aria-label={fw.name}>
+        <Image src={fw.image} alt={fw.name} loading="lazy" />
+      </ImageWrap>
+    );
+  }
+
+  if (fw.link) {
+    return (
+      <NameLink
+        key={idx}
+        href={fw.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={fw.name}
       >
-        {/* First set */}
-        {frameworks.map((fw, idx) => (
-          <TickerItem 
-            key={`first-${idx}`} 
-            href={fw.link} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.08 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            {fw.name}
-          </TickerItem>
-        ))}
-        
-        {/* Duplicate for seamless loop */}
-        {frameworks.map((fw, idx) => (
-          <TickerItem 
-            key={`second-${idx}`} 
-            href={fw.link} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.08 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            {fw.name}
-          </TickerItem>
-        ))}
+        <NamePill>{fw.name}</NamePill>
+      </NameLink>
+    );
+  }
+
+  return (
+    <NameStatic key={idx} aria-label={fw.name}>
+      <NamePill>{fw.name}</NamePill>
+    </NameStatic>
+  );
+}
+
+export default function Frameworks() {
+  const [paused, setPaused] = useState(false);
+  const items = [...frameworks, ...frameworks];
+
+  return (
+    <MarqueeContainer
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      <MarqueeTrack $paused={paused}>
+        {items.map((fw, idx) => renderItem(fw, idx))}
       </MarqueeTrack>
     </MarqueeContainer>
   );

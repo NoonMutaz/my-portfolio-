@@ -1,12 +1,6 @@
 import styled from "styled-components";
-import { Row, Col, Container } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import { motion } from "framer-motion";
-
-// Section Container for proper spacing
-const Section = styled.section`
-  padding: 60px 0;
-  background-color: #0B0F1959;
-`;
 
 const SectionTitle = styled.h2`
   color: white;
@@ -149,40 +143,46 @@ const cardVariants = {
 
 export default function Experience() {
   return (
-    <Section>
-      <Container>
-        <SectionTitle>Work Experience</SectionTitle>
-        <Row 
-          as={motion.div}
-          className="g-4"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-        >
-          {experiences.map((exp, index) => (
-            <Col key={index} lg={4} md={6} sm={12}>
-              <ExperienceCard
-                variants={cardVariants}
-                whileHover={{ y: -6, transition: { duration: 0.2 } }}
-              >
-                <CardHeader>
-                  <Company>{exp.company}</Company>
-                  <Role>
-                    {exp.role} 
-                    <span style={{ fontSize: '0.85rem', color: '#a0aec0', fontWeight: 400, display: 'block', marginTop: '2px' }}>
-                      ({exp.type})
-                    </span>
-                  </Role>
-                  <Duration>{exp.duration}</Duration>
-                </CardHeader>
+    <>
+      <SectionTitle>Work Experience</SectionTitle>
+      <Row
+        as={motion.div}
+        className="g-4"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1 }}
+      >
+        {experiences.map((exp, index) => (
+          <Col key={index} lg={4} md={6} sm={12}>
+            <ExperienceCard
+              variants={cardVariants}
+              whileHover={{ y: -6, transition: { duration: 0.2 } }}
+            >
+              <CardHeader>
+                <Company>{exp.company}</Company>
+                <Role>
+                  {exp.role}
+                  <span
+                    style={{
+                      fontSize: "0.85rem",
+                      color: "#a0aec0",
+                      fontWeight: 400,
+                      display: "block",
+                      marginTop: "2px",
+                    }}
+                  >
+                    ({exp.type})
+                  </span>
+                </Role>
+                <Duration>{exp.duration}</Duration>
+              </CardHeader>
 
-                <Description>{exp.description}</Description>
-              </ExperienceCard>
-            </Col>
-          ))}
-        </Row>
-      </Container>
-    </Section>
+              <Description>{exp.description}</Description>
+            </ExperienceCard>
+          </Col>
+        ))}
+      </Row>
+    </>
   );
 }

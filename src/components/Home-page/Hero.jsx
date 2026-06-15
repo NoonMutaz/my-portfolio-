@@ -1,19 +1,20 @@
 import styled from "styled-components";
-import { Container, Button } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { motion } from "framer-motion";
+import { FaPhone, FaEnvelope, FaLinkedin, FaGithub } from "react-icons/fa";
 import { colors } from "../../data/Colors-data";
 
 export default function Hero() {
   const HeroSection = styled.section`
-  //  min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     color: ${colors.white};
-    padding: 4rem 0;
+    padding: clamp(3rem, 6vw, 5rem) 0;
     position: relative;
     overflow: hidden;
+    scroll-margin-top: 88px;
     
     /* Subtle animated background elements */
     &::before {
@@ -126,44 +127,40 @@ const ContentWrapper = styled(motion.div)`
     margin-top: 2rem;
     display: flex;
     justify-content: center;
-    gap: 1.2rem;
+    gap: 0.75rem;
     flex-wrap: wrap;
     margin-bottom: 2.5rem;
   `;
 
   const InfoLink = styled(motion.a)`
-    color: ${colors.neon};
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: rgba(255, 255, 255, 0.85);
     text-decoration: none;
     font-weight: 600;
-    font-size: 0.95rem;
-    position: relative;
-    padding: 0.5rem 0;
-    transition: all 0.3s ease;
-    
-    /* Underline animation */
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: ${colors.neon};
-      transition: width 0.3s ease;
+    font-size: 0.88rem;
+    padding: 0.55rem 1rem;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.04);
+    transition: all 0.25s ease;
+
+    svg {
+      color: ${colors.neon};
+      font-size: 0.95rem;
     }
-    
+
     &:hover {
       color: ${colors.white};
-      text-shadow: 0 0 10px ${colors.neon};
-      
-      &::after {
-        width: 100%;
-      }
+      border-color: rgba(0, 255, 127, 0.35);
+      background: rgba(0, 255, 127, 0.08);
+      transform: translateY(-2px);
     }
   `;
 
-  const NeonButton = styled(motion.Button)`
-    background: #229A32FF;
+  const NeonButton = styled(motion.a)`
+    background: #229a32;
     color: ${colors.black};
     border: none;
     padding: 0.85rem 2.8rem;
@@ -171,16 +168,18 @@ const ContentWrapper = styled(motion.div)`
     font-weight: 700;
     border-radius: 50px;
     letter-spacing: 0.5px;
-    box-shadow: 
+    box-shadow:
       0 4px 20px rgba(0, 255, 127, 0.3),
       inset 0 -2px 8px rgba(0, 0, 0, 0.1);
     transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     cursor: pointer;
     position: relative;
     overflow: hidden;
-    
+    text-decoration: none;
+    display: inline-block;
+
     &::before {
-      content: '';
+      content: "";
       position: absolute;
       top: 0;
       left: -100%;
@@ -188,28 +187,24 @@ const ContentWrapper = styled(motion.div)`
       height: 100%;
       background: rgba(255, 255, 255, 0.1);
       transition: left 0.5s ease;
-      
     }
-    
+
     &:hover {
       transform: translateY(-3px);
-      box-shadow: 
-        0 8px 30px rgba(0, 265, 167, 0.2),
+      box-shadow:
+        0 8px 30px rgba(0, 255, 127, 0.2),
         inset 0 -2px 8px rgba(0, 0, 0, 0.15);
-        background-color:${colors.neon};;
- 
-      
+      background-color: ${colors.neon};
+      color: ${colors.black};
+
       &::before {
         left: 100%;
       }
     }
-    
+
     &:active {
       transform: translateY(-1px);
     }
-    
-    text-decoration: none;
-    display: inline-block;
   `;
 
   const containerVariants = {
@@ -255,50 +250,50 @@ const ContentWrapper = styled(motion.div)`
 
           <motion.div variants={itemVariants}>
             <ContactLinks>
-              <InfoLink 
+              <InfoLink
                 href="tel:+966581019574"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
               >
-                Phone
+                <FaPhone /> Phone
               </InfoLink>
-              <InfoLink 
+              <InfoLink
                 href="mailto:noonalmutaz002@gmail.com"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
               >
-                Email
+                <FaEnvelope /> Email
               </InfoLink>
               <InfoLink
                 href="https://www.linkedin.com/in/noon-almutaz-059a61267"
                 target="_blank"
                 rel="noreferrer"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
               >
-                LinkedIn
+                <FaLinkedin /> LinkedIn
               </InfoLink>
               <InfoLink
                 href="https://github.com/NoonMutaz"
                 target="_blank"
                 rel="noreferrer"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
               >
-                GitHub
+                <FaGithub /> GitHub
               </InfoLink>
             </ContactLinks>
           </motion.div>
 
-        <a href="#projects">  <motion.div variants={itemVariants}   >
-            <NeonButton 
+          <motion.div variants={itemVariants}>
+            <NeonButton
               href="#projects"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               Explore My Work
             </NeonButton>
-          </motion.div></a>
+          </motion.div>
         </ContentWrapper>
       </Container>
     </HeroSection>

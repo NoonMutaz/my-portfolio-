@@ -1,112 +1,312 @@
-import { Button, Row, Col, Form } from "react-bootstrap";
+import { Button, Row, Col } from "react-bootstrap";
 import { useState } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import {
+  FaUser,
+  FaEnvelope,
+  FaCommentDots,
+  FaPaperPlane,
+  FaPhone,
+  FaLinkedin,
+  FaGithub,
+} from "react-icons/fa";
 import { colors } from "../../data/Colors-data";
-import db from "../../config/firestore";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
+const RECIPIENT_EMAIL = "noonalmutaz002@gmail.com";
+const WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
 
-
-
-
-const ContactForm = styled(Form)`
+const ContactWrapper = styled.div`
   position: relative;
+  border-radius: 24px;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 255, 127, 0.35),
+    rgba(255, 255, 255, 0.06) 40%,
+    rgba(0, 255, 127, 0.15)
+  );
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+`;
+
+const ContactCard = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 0;
+  border-radius: 23px;
   overflow: hidden;
+  background: #0a0c10;
+  backdrop-filter: blur(16px);
+  color: ${colors.white};
 
-  background: rgba(10, 10, 10, 0.52);
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const InfoPanel = styled.div`
+  padding: clamp(1.8rem, 4vw, 2.5rem);
+  background: linear-gradient(
+    160deg,
+    rgba(0, 255, 127, 0.1) 0%,
+    rgba(0, 255, 127, 0.02) 60%,
+    transparent 100%
+  );
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  @media (max-width: 768px) {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+`;
+
+const PanelTitle = styled.h3`
+  margin: 0;
+  color: #f0f0f0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+`;
+
+const PanelText = styled.p`
+  margin: 0;
+  color: #9ca3af;
+  font-size: 0.95rem;
+  line-height: 1.7;
+`;
+
+const QuickLinks = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-top: auto;
+`;
+
+const QuickLink = styled.a`
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  color: #d1d5db;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: all 0.25s ease;
 
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  svg {
+    color: ${colors.neon};
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
 
-  padding: clamp(1.8rem, 4vw, 3rem);
-  border-radius: 28px;
+  span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 
-  box-shadow:
-    0 10px 40px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  &:hover {
+    border-color: rgba(0, 255, 127, 0.3);
+    background: rgba(0, 255, 127, 0.07);
+    color: #f0f0f0;
+    transform: translateX(4px);
+  }
+`;
 
-  &::before {
-    content: "";
+const FormPanel = styled.form`
+  padding: clamp(1.8rem, 4vw, 2.5rem);
+  position: relative;
+  color-scheme: dark;
+  background: #0d0f14;
+`;
+
+const FieldGroup = styled.div`
+  margin-bottom: 1.25rem;
+`;
+
+const FieldLabel = styled.label`
+  display: block;
+  color: #b0b8c4;
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+`;
+
+const inputStyles = `
+  width: 100%;
+  background: #141820;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #f0f0f0;
+  border-radius: 12px;
+  padding: 0.85rem 1rem 0.85rem 2.75rem;
+  font-size: 0.95rem;
+  font-family: inherit;
+  line-height: 1.5;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  caret-color: ${colors.neon};
+
+  &::placeholder {
+    color: #6b7280;
+  }
+
+  &:focus {
+    background: #181c24;
+    border-color: rgba(0, 255, 127, 0.5);
+    box-shadow: 0 0 0 3px rgba(0, 255, 127, 0.12);
+    outline: none;
+  }
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus {
+    -webkit-text-fill-color: #f0f0f0;
+    -webkit-box-shadow: 0 0 0 1000px #141820 inset;
+    box-shadow: 0 0 0 1000px #141820 inset;
+    border-color: rgba(0, 255, 127, 0.35);
+    transition: background-color 5000s ease-in-out 0s;
+  }
+`;
+
+const InputWrap = styled.div`
+  position: relative;
+
+  svg {
     position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(
-        135deg,
-        rgba(0, 255, 127, 0.04),
-        transparent 35%
-      );
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(0, 255, 127, 0.6);
+    font-size: 0.9rem;
     pointer-events: none;
+    z-index: 1;
   }
 
-  label {
-    color: rgba(255, 255, 255, 0.82);
-    font-weight: 600;
-    margin-bottom: 0.55rem;
-    font-size: 0.95rem;
-    letter-spacing: 0.3px;
+  &.textarea svg {
+    top: 1rem;
+    transform: none;
   }
+`;
 
-  input,
-  textarea {
-    background: rgba(255, 255, 255, 0.06) !important;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+const StyledInput = styled.input`
+  ${inputStyles}
+`;
 
-    color: white !important;
+const StyledTextarea = styled.textarea`
+  ${inputStyles}
+  min-height: 130px;
+  resize: vertical;
+  padding-top: 0.9rem;
+`;
 
-    border-radius: 14px;
-    padding: 0.9rem 1rem;
-
-    transition: all 0.25s ease;
-
-    backdrop-filter: blur(4px);
-
-    &::placeholder {
-      color: rgba(255, 255, 255, 0.38);
-    }
-
-    &:focus {
-      background: rgba(255, 255, 255, 0.08) !important;
-
-      border-color: rgba(0, 255, 127, 0.45) !important;
-
-      box-shadow:
-        0 0 0 4px rgba(0, 255, 127, 0.08),
-        0 0 18px rgba(0, 255, 127, 0.12);
-
-      outline: none;
-    }
-  }
-
-  textarea {
-    resize: none;
-    min-height: 140px;
-  }
-
-  .form-group,
-  .mb-3 {
-    margin-bottom: 1.3rem;
-  }
+const SubmitRow = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
 `;
 
 const NeonButton = styled(Button)`
-  background: ${colors.neon};
-  color: ${colors.black};
-  border: none;
-  padding: 0.7rem 2rem;
-  font-size: 1.1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: ${colors.neon} !important;
+  color: ${colors.black} !important;
+  border: none !important;
+  padding: 0.75rem 1.75rem;
+  font-size: 0.95rem;
   border-radius: 50px;
-  font-weight: bold;
-  margin-top: 1rem;
-  box-shadow: 0 0 15px ${colors.neon};
-  transition: all 0.3s ease;
+  font-weight: 700;
+  box-shadow: 0 4px 20px rgba(0, 255, 127, 0.3);
+  transition: all 0.25s ease;
 
-  &:hover {
-    transform: scale(1.08);
-    box-shadow: 0 0 25px ${colors.neon};
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(0, 255, 127, 0.4);
+    background: ${colors.neon} !important;
+    color: ${colors.black} !important;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    box-shadow: none;
   }
 `;
+
+const StatusMessage = styled.div`
+  font-size: 0.88rem;
+  color: ${(props) =>
+    props.$type === "error"
+      ? "#f87171"
+      : props.$type === "success"
+        ? colors.neon
+        : "#9ca3af"};
+`;
+
+const QUICK_LINKS = [
+  {
+    href: "tel:+966581019574",
+    icon: FaPhone,
+    label: "+966 581 019 574",
+  },
+  {
+    href: `mailto:${RECIPIENT_EMAIL}`,
+    icon: FaEnvelope,
+    label: RECIPIENT_EMAIL,
+  },
+  {
+    href: "https://www.linkedin.com/in/noon-almutaz-059a61267",
+    icon: FaLinkedin,
+    label: "LinkedIn",
+    external: true,
+  },
+  {
+    href: "https://github.com/NoonMutaz",
+    icon: FaGithub,
+    label: "GitHub",
+    external: true,
+  },
+];
+
+async function sendContactEmail({ name, email, message }) {
+  if (!WEB3FORMS_ACCESS_KEY) {
+    throw new Error("MISSING_ACCESS_KEY");
+  }
+
+  const response = await fetch("https://api.web3forms.com/submit", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify({
+      access_key: WEB3FORMS_ACCESS_KEY,
+      name,
+      email,
+      message,
+      subject: `Portfolio message from ${name}`,
+      from_name: name,
+      replyto: email,
+    }),
+  });
+
+  const data = await response.json();
+
+  if (!response.ok || !data.success) {
+    throw new Error(data.message || "Failed to send message");
+  }
+
+  return data;
+}
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -115,36 +315,34 @@ export default function Contact() {
     message: "",
   });
 
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState({ type: "", message: "" });
+  const [isSending, setIsSending] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setStatus("Sending...");
+    setIsSending(true);
+    setStatus({ type: "loading", message: "Sending your message..." });
 
     try {
-      await addDoc(collection(db, "messages"), {
-        name: formData.name,
-        email: formData.email,
-        message: formData.message,
-        timestamp: serverTimestamp(),
-      });
+      await sendContactEmail(formData);
       setFormData({ name: "", email: "", message: "" });
-      setStatus("Message sent successfully.");
+      setStatus({
+        type: "success",
+        message: "Message sent! I'll get back to you soon.",
+      });
     } catch (error) {
       console.error("Error sending message:", error);
-      setStatus(
-        <div style={{ color: "#f87171" }}>
-          Failed to send message. Please try again later.
-          <br />
-          You can also contact me directly at{" "}
-          <span style={{ color: colors.neon }}>noonalmutaz002@gmail.com</span>.
-        </div>
-      );
+      const isMissingKey = error.message === "MISSING_ACCESS_KEY";
+      setStatus({
+        type: "error",
+        message: isMissingKey
+          ? `Email is not configured yet. Please contact me at ${RECIPIENT_EMAIL}.`
+          : `Something went wrong. Please email me at ${RECIPIENT_EMAIL}.`,
+      });
+    } finally {
+      setIsSending(false);
     }
   };
-
-
-
-
 
   return (
     <motion.div
@@ -156,57 +354,109 @@ export default function Contact() {
       <Row className="justify-content-center">
         <Col
           as={motion.div}
-          md={8}
+          lg={10}
           initial={{ opacity: 0, scale: 0.98 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, amount: 0.35 }}
-          transition={{ duration: 0.5, delay: 0.15 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
         >
-          <ContactForm onSubmit={handleSubmit}>
-            <Form.Group>
-              <Form.Label>Name</Form.Label>
-              <Form.Control
-                type="text"
-                required
-                placeholder="Enter your name"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Email</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="Enter your email"
-                required
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Message</Form.Label>
-              <Form.Control
-                as="textarea"
-                required
-                rows={4}
-                placeholder="Enter your message"
-                value={formData.message}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-              />
-            </Form.Group>
-            <NeonButton type="submit">Send Message</NeonButton>
-            {status && (
-              <div
-                style={{
-                  color: colors.neon,
-                  marginTop: "1rem",
-                  textAlign: "center",
-                }}
-              >
-                {status}
-              </div>
-            )}
-          </ContactForm>
+          <ContactWrapper>
+            <ContactCard>
+              <InfoPanel>
+                <div>
+                  <PanelTitle>Let's connect</PanelTitle>
+                  <PanelText>
+                    Have a project in mind or want to collaborate? Send me a
+                    message and I'll respond as soon as possible.
+                  </PanelText>
+                </div>
+
+                <QuickLinks>
+                  {QUICK_LINKS.map(({ href, icon: Icon, label, external }) => (
+                    <QuickLink
+                      key={href}
+                      href={href}
+                      target={external ? "_blank" : undefined}
+                      rel={external ? "noreferrer" : undefined}
+                    >
+                      <Icon />
+                      <span>{label}</span>
+                    </QuickLink>
+                  ))}
+                </QuickLinks>
+              </InfoPanel>
+
+              <FormPanel onSubmit={handleSubmit}>
+                <FieldGroup>
+                  <FieldLabel htmlFor="contact-name">Name</FieldLabel>
+                  <InputWrap>
+                    <FaUser />
+                    <StyledInput
+                      id="contact-name"
+                      type="text"
+                      required
+                      placeholder="Your name"
+                      value={formData.name}
+                      onChange={(e) =>
+                        setFormData({ ...formData, name: e.target.value })
+                      }
+                    />
+                  </InputWrap>
+                </FieldGroup>
+
+                <FieldGroup>
+                  <FieldLabel htmlFor="contact-email">Email</FieldLabel>
+                  <InputWrap>
+                    <FaEnvelope />
+                    <StyledInput
+                      id="contact-email"
+                      type="email"
+                      required
+                      placeholder="you@example.com"
+                      value={formData.email}
+                      onChange={(e) =>
+                        setFormData({ ...formData, email: e.target.value })
+                      }
+                    />
+                  </InputWrap>
+                </FieldGroup>
+
+                <FieldGroup>
+                  <FieldLabel htmlFor="contact-message">Message</FieldLabel>
+                  <InputWrap className="textarea">
+                    <FaCommentDots />
+                    <StyledTextarea
+                      id="contact-message"
+                      required
+                      rows={4}
+                      placeholder="Tell me about your project or idea..."
+                      value={formData.message}
+                      onChange={(e) =>
+                        setFormData({ ...formData, message: e.target.value })
+                      }
+                    />
+                  </InputWrap>
+                </FieldGroup>
+
+                <SubmitRow>
+                  <NeonButton type="submit" disabled={isSending}>
+                    <FaPaperPlane />
+                    {isSending ? "Sending..." : "Send Message"}
+                  </NeonButton>
+
+                  {status.message && (
+                    <StatusMessage
+                      $type={status.type}
+                      role="status"
+                      aria-live="polite"
+                    >
+                      {status.message}
+                    </StatusMessage>
+                  )}
+                </SubmitRow>
+              </FormPanel>
+            </ContactCard>
+          </ContactWrapper>
         </Col>
       </Row>
     </motion.div>
