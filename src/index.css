@@ -1,10 +1,7 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Exo+2:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap");
 @import "tailwindcss";
-@plugin "daisyui"; /* @tailwind base;
-@tailwind components; */
-@tailwind utilities; 
+@plugin "daisyui";
+@tailwind utilities;
 
 * {
   box-sizing: border-box;
@@ -31,19 +28,15 @@ html {
 
 a {
   font-weight: 500;
- 
   text-decoration: inherit;
-}
-a:hover {
-  /* color: tomato; */
 }
 
 body {
   margin: 0;
   min-height: 100vh;
-  font-family: "Lato", sans-serif;
-  background: #000;
-  color: #f5f5f5;
+  font-family: "DM Sans", sans-serif;
+  background: #020818;
+  color: #e8f4ff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -53,12 +46,12 @@ button {
 }
 
 ::selection {
-  background: rgba(0, 255, 127, 0.25);
+  background: rgba(56, 189, 248, 0.28);
   color: #fff;
 }
 
 :focus-visible {
-  outline: 2px solid #00ff7f;
+  outline: 2px solid #38bdf8;
   outline-offset: 3px;
 }
 

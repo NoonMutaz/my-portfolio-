@@ -1,20 +1,19 @@
 import { useState } from "react";
 import styled, { css } from "styled-components";
 import { frameworks } from "../../data/Frameworks-data";
-import { colors } from "../../data/Colors-data";
+import { colors, fonts } from "../../data/Colors-data";
 
 const MarqueeContainer = styled.div`
   overflow: hidden;
   padding: 1.5rem 0;
   width: 100%;
-  background-color:rgba(0, 255, 127, 0.07);
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid ${colors.border};
+  border-bottom: 1px solid ${colors.border};
   background: linear-gradient(
     to bottom,
-    rgba(0, 255, 127, 0.03),
+    rgba(56, 189, 248, 0.04),
     transparent,
-    rgba(0, 255, 127, 0.03)
+    rgba(56, 189, 248, 0.04)
   );
   -webkit-mask-image: linear-gradient(
     to right,
@@ -94,15 +93,16 @@ const Image = styled.img`
 `;
 
 const NamePill = styled.span`
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: rgba(0, 255, 127, 4.35);
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: ${fonts.mono};
+  color: ${colors.accentLight};
   white-space: nowrap;
-  letter-spacing: 0.5px;
-  padding: 0.55rem 1.25rem;
-  border-radius: 50px;
-  //border: 1px solid rgba(0, 255, 127, 0.28);
- // background: rgba(0, 255, 127, 0.07);
+  letter-spacing: 0.04em;
+  padding: 0.5rem 1.1rem;
+  border-radius: 6px;
+  border: 1px solid ${colors.border};
+  background: ${colors.accentSoft};
   transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease;
 `;
 
@@ -111,9 +111,9 @@ const NameLink = styled.a`
   text-decoration: none;
 
   &:hover ${NamePill} {
-    color: ${colors.neon};
-    border-color: rgba(0, 255, 127, 0.5);
-    background: rgba(0, 255, 127, 0.12);
+    color: ${colors.white};
+    border-color: ${colors.borderHover};
+    background: rgba(56, 189, 248, 0.18);
   }
 `;
 

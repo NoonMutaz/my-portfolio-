@@ -1,53 +1,40 @@
 import styled from "styled-components";
 import { Row, Col } from "react-bootstrap";
 import { motion } from "framer-motion";
+import { colors, fonts } from "../../data/Colors-data";
 
-const SectionTitle = styled.h2`
-  color: white;
-  font-size: 2rem;
-  font-weight: 800;
-  margin-bottom: 2.5rem;
-  letter-spacing: -0.5px;
-  position: relative;
-  
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 50px;
-    height: 4px;
-    background: #00ff7f;
-    border-radius: 2px;
-  }
-`;
-
-const ExperienceCard = styled(motion.div)`
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 16px;
-  padding: 2rem;
+const ExperienceCard = styled(motion.article)`
+  background: ${colors.surface};
+  border: 1px solid ${colors.border};
+  border-radius: 8px;
+  padding: 1.75rem;
   height: 100%;
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  transition: border-color 0.25s ease, transform 0.25s ease;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 3px;
     height: 100%;
-    background: radial-gradient(circle at top left, rgba(0, 255, 127, 0.03), transparent 40%);
-    pointer-events: none;
+    background: linear-gradient(to bottom, ${colors.neon}, transparent);
+    opacity: 0;
+    transition: opacity 0.25s ease;
   }
 
   &:hover {
-    border-color: rgba(0, 255, 127, 0.2);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 255, 127, 0.03);
+    border-color: ${colors.borderHover};
+    transform: translateY(-4px);
+
+    &::before {
+      opacity: 1;
+    }
   }
 `;
 
@@ -56,39 +43,42 @@ const CardHeader = styled.div`
 `;
 
 const Company = styled.span`
-  color: #00ff7f;
-  font-size: 0.85rem;
+  font-family: ${fonts.mono};
+  color: ${colors.accentLight};
+  font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  background: rgba(0, 255, 127, 0.06);
-  padding: 4px 12px;
-  border-radius: 20px;
+  letter-spacing: 0.12em;
+  background: ${colors.accentSoft};
+  border: 1px solid ${colors.border};
+  padding: 4px 10px;
+  border-radius: 4px;
   display: inline-block;
   margin-bottom: 0.8rem;
 `;
 
 const Role = styled.h3`
-  color: #ffffff;
-  font-size: 1.25rem;
-  font-weight: 700;
+  color: ${colors.white};
+  font-family: ${fonts.display};
+  font-size: 1.15rem;
+  font-weight: 600;
   margin-bottom: 0.4rem;
-  letter-spacing: -0.3px;
+  letter-spacing: -0.02em;
 `;
 
 const Duration = styled.p`
-  color: #a0aec0;
-  font-size: 0.85rem;
+  color: ${colors.muted};
+  font-family: ${fonts.mono};
+  font-size: 0.75rem;
   font-weight: 500;
   margin-bottom: 0;
 `;
 
 const Description = styled.p`
-  color: #cbd5e1;
-  font-size: 0.95rem;
-  line-height: 1.6;
+  color: ${colors.muted};
+  font-size: 0.92rem;
+  line-height: 1.65;
   margin-bottom: 0;
-  font-weight: 400;
 `;
 
 const experiences = [
@@ -143,16 +133,14 @@ const cardVariants = {
 
 export default function Experience() {
   return (
-    <>
-      <SectionTitle>Work Experience</SectionTitle>
-      <Row
-        as={motion.div}
-        className="g-4"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.1 }}
-      >
+    <Row
+      as={motion.div}
+      className="g-3"
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.1 }}
+    >
         {experiences.map((exp, index) => (
           <Col key={index} lg={4} md={6} sm={12}>
             <ExperienceCard
@@ -165,8 +153,8 @@ export default function Experience() {
                   {exp.role}
                   <span
                     style={{
-                      fontSize: "0.85rem",
-                      color: "#a0aec0",
+                      fontSize: "0.82rem",
+                      color: colors.muted,
                       fontWeight: 400,
                       display: "block",
                       marginTop: "2px",
@@ -183,6 +171,5 @@ export default function Experience() {
           </Col>
         ))}
       </Row>
-    </>
   );
 }

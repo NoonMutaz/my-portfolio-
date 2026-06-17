@@ -11,19 +11,16 @@ import Certificates from "./Certificates";
 import Experience from "./Experience";
 import Footer from "../common/Footer";
 import BackToTop from "../common/BackToTop";
+import SectionHeader from "../common/SectionHeader";
+import { colors } from "../../data/Colors-data";
 
 const PageShell = styled.div`
-  background: transparent;
   position: relative;
   z-index: 1;
 `;
 
 const Section = styled.section`
-  padding: clamp(5rem, 8vw, 7rem) 0;
-  background: ${(props) => props.bg || "rgba(8, 8, 8, 0.55)"};
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(4px);
+  padding: clamp(4.5rem, 8vw, 6.5rem) 0;
   position: relative;
   scroll-margin-top: 88px;
 
@@ -31,74 +28,26 @@ const Section = styled.section`
     content: "";
     position: absolute;
     top: 0;
-    left: 0;
-    right: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(90%, 1100px);
     height: 1px;
     background: linear-gradient(
       to right,
       transparent,
-      rgba(0, 255, 127, 0.1),
+      ${colors.border},
       transparent
     );
   }
 `;
 
-const SectionTitle = styled.h2`
-  color: white;
-  font-size: clamp(1.8rem, 4vw, 2.2rem);
-  font-weight: 800;
-  margin-bottom: clamp(1.8rem, 3vw, 2.5rem);
-  letter-spacing: -0.8px;
-  position: relative;
-  line-height: 1.2;
-
-  &::after {
-    content: "";
-    position: absolute;
-    bottom: calc(-1 * clamp(0.6rem, 1.5vw, 0.9rem));
-    left: 0;
-    width: 50px;
-    height: 3px;
-    background: linear-gradient(to right, #00ff7f, rgba(0, 255, 127, 0));
-    border-radius: 2px;
-  }
-`;
-
 const SectionMotion = motion(Section);
-const TitleMotion = motion(SectionTitle);
-
-const sectionFadeUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.8,
-      ease: [0.34, 1.56, 0.64, 1],
-    },
-  },
-};
-
-const titleFade = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut",
-    },
-  },
-};
 
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.1,
-    },
+    transition: { staggerChildren: 0.12, delayChildren: 0.08 },
   },
 };
 
@@ -108,16 +57,19 @@ function HomePage() {
       <Navbar />
       <BackToTop />
 
-      <Container className="pt-5 mt-2">
-        <Hero />
-      </Container>
+      <Hero />
 
       <Section id="experience">
         <Container>
+          <SectionHeader
+            index="01"
+            title="Work Experience"
+          ///  subtitle="Roles where I've shipped production software and grown as an engineer."
+          />
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
+            viewport={{ once: true, amount: 0.12 }}
             variants={containerVariants}
           >
             <Experience />
@@ -127,10 +79,15 @@ function HomePage() {
 
       <Section id="projects">
         <Container>
+          <SectionHeader
+            index="02"
+            title="  Projects"
+            subtitle="A sample of products I've designed and shipped end to end."
+          />
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
+            viewport={{ once: true, amount: 0.12 }}
             variants={containerVariants}
           >
             <Projects />
@@ -140,32 +97,26 @@ function HomePage() {
 
       <Section id="technologies">
         <Container>
-          <TitleMotion
-            variants={titleFade}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.35 }}
-          >
-            Technologies & Frameworks
-          </TitleMotion>
+          <SectionHeader
+            index="03"
+            title="Technologies"
+            subtitle="Tools and frameworks I reach for when building products."
+          />
           <Frameworks />
         </Container>
       </Section>
 
       <Section id="about">
         <Container>
-          <TitleMotion
-            variants={titleFade}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.35 }}
-          >
-            About Me
-          </TitleMotion>
+          <SectionHeader
+            index="04"
+            title="About Me"
+            subtitle="Engineering background, craft, and how I approach building software."
+          />
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.15 }}
             variants={containerVariants}
           >
             <About />
@@ -175,10 +126,15 @@ function HomePage() {
 
       <Section>
         <Container>
+          <SectionHeader
+            index="05"
+            title="Certifications"
+            subtitle="Continuous learning across engineering, testing, and architecture."
+          />
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
+            viewport={{ once: true, amount: 0.12 }}
             variants={containerVariants}
           >
             <Certificates />
@@ -188,24 +144,21 @@ function HomePage() {
 
       <SectionMotion
         id="contact"
-        variants={sectionFadeUp}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
+        initial={{ opacity: 0, y: 32 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 0.7 }}
       >
         <Container>
-          <TitleMotion
-            variants={titleFade}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.35 }}
-          >
-            Contact Me
-          </TitleMotion>
+          <SectionHeader
+            index="06"
+            title="Contact me"
+            subtitle="I typically respond within 24 hours."
+          />
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.15 }}
             variants={containerVariants}
           >
             <Contact />

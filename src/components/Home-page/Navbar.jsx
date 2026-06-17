@@ -1,48 +1,53 @@
 import { useState, useEffect } from "react";
 import { Container, Navbar, Nav } from "react-bootstrap";
 import styled from "styled-components";
-import { colors } from "../../data/Colors-data";
+import { colors, fonts } from "../../data/Colors-data";
 import cv from "../../assets/Noon_Almutaz_cv.pdf";
 
 const GlassNavbar = styled(Navbar)`
-  background: rgba(14, 14, 14, 0.74);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.33);
-  padding: 0.85rem 1rem;
+  background: rgba(2, 8, 24, 0.72);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid ${colors.border};
+  padding: 0.9rem 1rem;
 `;
 
 const Brand = styled(Navbar.Brand)`
-  color: ${colors.neon} !important;
+  font-family: ${fonts.display};
+  color: ${colors.white} !important;
   font-weight: 700;
-  font-size: 1.35rem;
-  letter-spacing: 0.01em;
+  font-size: 1.15rem;
+  letter-spacing: -0.02em;
+
+  span {
+    color: ${colors.accentLight};
+  }
 `;
 
 const NeonNavLink = styled(Nav.Link)`
-  color: ${(props) =>
-    props.$active ? colors.neon : colors.white} !important;
+  font-family: ${fonts.mono};
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: ${(props) => (props.$active ? colors.accentLight : colors.muted)} !important;
   font-weight: ${(props) => (props.$active ? "600" : "500")};
   position: relative;
-  transition: color 0.2s ease, text-shadow 0.2s ease;
-  padding-bottom: 0.25rem !important;
+  transition: color 0.2s ease;
+  padding-bottom: 0.2rem !important;
 
   &::after {
     content: "";
     position: absolute;
     bottom: 0;
-    left: 0.5rem;
-    right: 0.5rem;
-    height: 2px;
+    left: 0.4rem;
+    right: 0.4rem;
+    height: 1px;
     background: ${colors.neon};
-    border-radius: 2px;
     transform: scaleX(${(props) => (props.$active ? 1 : 0)});
     transition: transform 0.25s ease;
   }
 
   &:hover {
-    color: ${colors.neon} !important;
-    text-shadow: 0 0 10px ${colors.neon};
+    color: ${colors.accentLight} !important;
 
     &::after {
       transform: scaleX(1);
@@ -53,20 +58,23 @@ const NeonNavLink = styled(Nav.Link)`
 const ResumeButton = styled.a`
   display: inline-flex;
   align-items: center;
-  margin-left: 0.5rem;
-  padding: 0.45rem 1.1rem;
-  border-radius: 50px;
-  background: ${colors.neon};
-  color: ${colors.black};
-  font-weight: 700;
-  font-size: 0.9rem;
+  margin-left: 0.75rem;
+  padding: 0.42rem 1rem;
+  border-radius: 6px;
+  border: 1px solid ${colors.borderHover};
+  background: ${colors.accentSoft};
+  color: ${colors.accentLight};
+  font-family: ${fonts.mono};
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   text-decoration: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease;
 
   &:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 16px rgba(0, 255, 127, 0.35);
-    color: ${colors.black};
+    background: rgba(56, 189, 248, 0.2);
+    color: ${colors.white};
   }
 `;
 
@@ -74,7 +82,7 @@ const NAV_ITEMS = [
   { id: "home", label: "Home" },
   { id: "experience", label: "Experience" },
   { id: "projects", label: "Projects" },
-  { id: "technologies", label: "Technologies" },
+  { id: "technologies", label: "Tech" },
   { id: "about", label: "About" },
   { id: "contact", label: "Contact" },
 ];
@@ -83,25 +91,19 @@ function NavBar() {
   const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
-    const sectionIds = NAV_ITEMS.map((item) => item.id);
-    const observers = [];
-
-    sectionIds.forEach((id) => {
+    const observers = NAV_ITEMS.map(({ id }) => {
       const el = document.getElementById(id);
-      if (!el) return;
+      if (!el) return null;
 
       const observer = new IntersectionObserver(
         ([entry]) => {
-          if (entry.isIntersecting) {
-            setActiveSection(id);
-          }
+          if (entry.isIntersecting) setActiveSection(id);
         },
         { rootMargin: "-35% 0px -55% 0px", threshold: 0 }
       );
-
       observer.observe(el);
-      observers.push(observer);
-    });
+      return observer;
+    }).filter(Boolean);
 
     return () => observers.forEach((o) => o.disconnect());
   }, []);
@@ -109,7 +111,9 @@ function NavBar() {
   return (
     <GlassNavbar expand="lg" variant="dark" fixed="top">
       <Container>
-        <Brand href="#home">Noon Almutaz</Brand>
+        <Brand href="#home">
+          Noon<span>.</span>
+        </Brand>
         <Navbar.Toggle aria-controls="portfolio-navbar" />
         <Navbar.Collapse id="portfolio-navbar" className="justify-content-end">
           <Nav className="align-items-lg-center">

@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import { Container } from "react-bootstrap";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
-import { colors } from "../../data/Colors-data";
+import { colors, fonts } from "../../data/Colors-data";
 
 const FooterBar = styled.footer`
-  padding: 2.5rem 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(6, 6, 6, 0.7);
-  backdrop-filter: blur(8px);
+  padding: 2rem 0;
+  border-top: 1px solid ${colors.border};
+  background: rgba(2, 8, 24, 0.8);
+  backdrop-filter: blur(10px);
 `;
 
 const Inner = styled.div`
@@ -20,31 +20,33 @@ const Inner = styled.div`
 
 const Copyright = styled.p`
   margin: 0;
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 0.9rem;
+  font-family: ${fonts.mono};
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: ${colors.muted};
 `;
 
 const SocialLinks = styled.div`
   display: flex;
-  gap: 0.75rem;
+  gap: 0.6rem;
 `;
 
 const SocialLink = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 1rem;
-  transition: all 0.25s ease;
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  border: 1px solid ${colors.border};
+  color: ${colors.muted};
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
 
   &:hover {
-    color: ${colors.neon};
-    border-color: rgba(0, 255, 127, 0.4);
-    background: rgba(0, 255, 127, 0.08);
+    color: ${colors.accentLight};
+    border-color: ${colors.borderHover};
+    background: ${colors.accentSoft};
     transform: translateY(-2px);
   }
 `;
@@ -56,7 +58,7 @@ export default function Footer() {
     <FooterBar>
       <Container>
         <Inner>
-          <Copyright>© {year} Noon Almutaz. All rights reserved.</Copyright>
+          <Copyright>© {year} Noon Almutaz</Copyright>
           <SocialLinks>
             <SocialLink
               href="https://github.com/NoonMutaz"

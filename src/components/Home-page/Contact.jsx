@@ -11,7 +11,7 @@ import {
   FaLinkedin,
   FaGithub,
 } from "react-icons/fa";
-import { colors } from "../../data/Colors-data";
+import { colors, fonts, gradients } from "../../data/Colors-data";
 
 const RECIPIENT_EMAIL = "noonalmutaz002@gmail.com";
 const WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
@@ -20,12 +20,7 @@ const ContactWrapper = styled.div`
   position: relative;
   border-radius: 24px;
   padding: 1px;
-  background: linear-gradient(
-    135deg,
-    rgba(0, 255, 127, 0.35),
-    rgba(255, 255, 255, 0.06) 40%,
-    rgba(0, 255, 127, 0.15)
-  );
+  background: ${gradients.border};
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
 `;
 
@@ -35,7 +30,7 @@ const ContactCard = styled.div`
   gap: 0;
   border-radius: 23px;
   overflow: hidden;
-  background: #0a0c10;
+  background: ${colors.spaceMid};
   backdrop-filter: blur(16px);
   color: ${colors.white};
 
@@ -48,11 +43,11 @@ const InfoPanel = styled.div`
   padding: clamp(1.8rem, 4vw, 2.5rem);
   background: linear-gradient(
     160deg,
-    rgba(0, 255, 127, 0.1) 0%,
-    rgba(0, 255, 127, 0.02) 60%,
+    rgba(14, 116, 200, 0.12) 0%,
+    rgba(6, 18, 48, 0.4) 60%,
     transparent 100%
   );
-  border-right: 1px solid rgba(255, 255, 255, 0.06);
+  border-right: 1px solid ${colors.border};
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -65,15 +60,16 @@ const InfoPanel = styled.div`
 
 const PanelTitle = styled.h3`
   margin: 0;
-  color: #f0f0f0;
-  font-size: 1.35rem;
-  font-weight: 700;
-  letter-spacing: -0.3px;
+  color: ${colors.white};
+  font-family: ${fonts.display};
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
 `;
 
 const PanelText = styled.p`
   margin: 0;
-  color: #9ca3af;
+  color: ${colors.muted};
   font-size: 0.95rem;
   line-height: 1.7;
 `;
@@ -91,9 +87,9 @@ const QuickLink = styled.a`
   gap: 0.75rem;
   padding: 0.75rem 1rem;
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.04);
-  color: #d1d5db;
+  border: 1px solid ${colors.border};
+  background: ${colors.accentSoft};
+  color: ${colors.muted};
   text-decoration: none;
   font-size: 0.9rem;
   transition: all 0.25s ease;
@@ -111,9 +107,9 @@ const QuickLink = styled.a`
   }
 
   &:hover {
-    border-color: rgba(0, 255, 127, 0.3);
-    background: rgba(0, 255, 127, 0.07);
-    color: #f0f0f0;
+    border-color: ${colors.borderHover};
+    background: rgba(56, 189, 248, 0.12);
+    color: ${colors.white};
     transform: translateX(4px);
   }
 `;
@@ -122,7 +118,7 @@ const FormPanel = styled.form`
   padding: clamp(1.8rem, 4vw, 2.5rem);
   position: relative;
   color-scheme: dark;
-  background: #0d0f14;
+  background: ${colors.spaceDeep};
 `;
 
 const FieldGroup = styled.div`
@@ -131,20 +127,21 @@ const FieldGroup = styled.div`
 
 const FieldLabel = styled.label`
   display: block;
-  color: #b0b8c4;
-  font-weight: 600;
-  font-size: 0.85rem;
+  color: ${colors.muted};
+  font-family: ${fonts.mono};
+  font-weight: 500;
+  font-size: 0.72rem;
   margin-bottom: 0.5rem;
-  letter-spacing: 0.4px;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 `;
 
 const inputStyles = `
   width: 100%;
-  background: #141820;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #f0f0f0;
-  border-radius: 12px;
+  background: rgba(6, 18, 48, 0.8);
+  border: 1px solid ${colors.border};
+  color: ${colors.white};
+  border-radius: 6px;
   padding: 0.85rem 1rem 0.85rem 2.75rem;
   font-size: 0.95rem;
   font-family: inherit;
@@ -153,23 +150,24 @@ const inputStyles = `
   caret-color: ${colors.neon};
 
   &::placeholder {
-    color: #6b7280;
+    color: ${colors.muted};
+    opacity: 0.7;
   }
 
   &:focus {
-    background: #181c24;
-    border-color: rgba(0, 255, 127, 0.5);
-    box-shadow: 0 0 0 3px rgba(0, 255, 127, 0.12);
+    background: rgba(8, 24, 56, 0.9);
+    border-color: ${colors.borderHover};
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.12);
     outline: none;
   }
 
   &:-webkit-autofill,
   &:-webkit-autofill:hover,
   &:-webkit-autofill:focus {
-    -webkit-text-fill-color: #f0f0f0;
-    -webkit-box-shadow: 0 0 0 1000px #141820 inset;
-    box-shadow: 0 0 0 1000px #141820 inset;
-    border-color: rgba(0, 255, 127, 0.35);
+    -webkit-text-fill-color: ${colors.white};
+    -webkit-box-shadow: 0 0 0 1000px rgba(6, 18, 48, 0.95) inset;
+    box-shadow: 0 0 0 1000px rgba(6, 18, 48, 0.95) inset;
+    border-color: ${colors.borderHover};
     transition: background-color 5000s ease-in-out 0s;
   }
 `;
@@ -182,7 +180,7 @@ const InputWrap = styled.div`
     left: 1rem;
     top: 50%;
     transform: translateY(-50%);
-    color: rgba(0, 255, 127, 0.6);
+    color: ${colors.accent};
     font-size: 0.9rem;
     pointer-events: none;
     z-index: 1;
@@ -218,21 +216,21 @@ const NeonButton = styled(Button)`
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
-  background: ${colors.neon} !important;
-  color: ${colors.black} !important;
+  background: linear-gradient(135deg, #0ea5e9, #38bdf8) !important;
+  color: #021018 !important;
   border: none !important;
   padding: 0.75rem 1.75rem;
-  font-size: 0.95rem;
-  border-radius: 50px;
+  font-size: 0.92rem;
+  border-radius: 6px;
   font-weight: 700;
-  box-shadow: 0 4px 20px rgba(0, 255, 127, 0.3);
+  box-shadow: 0 4px 20px rgba(56, 189, 248, 0.3);
   transition: all 0.25s ease;
 
   &:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: 0 8px 28px rgba(0, 255, 127, 0.4);
-    background: ${colors.neon} !important;
-    color: ${colors.black} !important;
+    box-shadow: 0 8px 28px rgba(56, 189, 248, 0.4);
+    background: linear-gradient(135deg, #0ea5e9, #38bdf8) !important;
+    color: #021018 !important;
   }
 
   &:disabled {

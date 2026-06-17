@@ -21,14 +21,14 @@ export default function UltimateCyberSpaceBackground() {
 
     // 🟢 لوحة ألوان النيون والأخضر السيبراني
     const getNeonColor = (opacity = 1) => {
-      const colors = [
-        "rgba(0, 255, 140",   // أخضر زمردي مصفوفي
-        "rgba(0, 243, 255",   // سكايلر أزرق إلكتروني
-        "rgba(57, 255, 20",   // أخضر فسفوري نيون
-        "rgba(0, 180, 90",    // أخضر داكن سيبراني
-        "rgba(255, 255, 255", // أبيض ناصع للإضاءة التباينية
+      const palette = [
+        "rgba(125, 211, 252",
+        "rgba(56, 189, 248",
+        "rgba(96, 165, 250",
+        "rgba(14, 165, 233",
+        "rgba(255, 255, 255",
       ];
-      const selectedColor = colors[Math.floor(Math.random() * colors.length)];
+      const selectedColor = palette[Math.floor(Math.random() * palette.length)];
       return `${selectedColor}, ${opacity})`;
     };
 
@@ -82,9 +82,9 @@ export default function UltimateCyberSpaceBackground() {
 
       // 2. سحب السديم (Nebula Clouds) لتعطي عمقاً أخضر نيون خلف النجوم
       const nebulaColors = [
-        "rgba(0, 255, 140",
-        "rgba(0, 243, 255",
-        "rgba(0, 80, 40",
+        "rgba(56, 189, 248",
+        "rgba(96, 165, 250",
+        "rgba(14, 40, 90",
       ];
       nebulae = Array.from({ length: 4 }, (_, i) => ({
         x: centerX + (Math.random() - 0.5) * 200,
@@ -152,7 +152,7 @@ export default function UltimateCyberSpaceBackground() {
         dx: Math.random() * 4 + 6,       // اتجاه الحركة لليمين
         dy: Math.random() * 3 + 4,       // اتجاه الحركة للأسفل
         opacity: Math.random() * 0.5 + 0.5,
-        color: Math.random() > 0.5 ? "rgba(0, 255, 140" : "rgba(0, 243, 255", // شهب خضراء أو زرقاء نيون
+        color: Math.random() > 0.5 ? "rgba(56, 189, 248" : "rgba(125, 211, 252",
       });
     };
 
@@ -266,8 +266,8 @@ export default function UltimateCyberSpaceBackground() {
         moonX - moonRadius * 0.4, moonY - moonRadius * 0.4, moonRadius * 0.5,
         moonX, moonY, moonRadius * 1.1
       );
-      moonShadow.addColorStop(0, "rgba(0, 255, 140, 0.22)"); 
-      moonShadow.addColorStop(0.5, "rgba(10, 25, 20, 0.4)");
+      moonShadow.addColorStop(0, "rgba(56, 189, 248, 0.22)");
+      moonShadow.addColorStop(0.5, "rgba(8, 20, 48, 0.4)");
       moonShadow.addColorStop(0.85, "rgba(0, 0, 0, 0.95)");
       moonShadow.addColorStop(1, "rgba(0, 0, 0, 1)");
 
@@ -290,14 +290,14 @@ export default function UltimateCyberSpaceBackground() {
         ctx.ellipse(currentRockX, rock.y, rock.rX * 0.9, rock.rY * 0.85, 0, 0, Math.PI * 2);
         ctx.clip();
 
-        ctx.strokeStyle = `rgba(57, 255, 20, ${lavaPulse * 0.9})`; // عروق خضراء نيون مشعة
+        ctx.strokeStyle = `rgba(125, 211, 252, ${lavaPulse * 0.9})`;
         ctx.lineWidth = 4;
         ctx.beginPath();
         ctx.moveTo(currentRockX - rock.rX, rock.y);
         ctx.bezierCurveTo(currentRockX - 40, rock.y + 25, currentRockX + 40, rock.y - 20, currentRockX + rock.rX, rock.y + 10);
         ctx.stroke();
 
-        ctx.strokeStyle = `rgba(0, 243, 255, ${lavaPulse * 0.6})`; // عروق زرقاء إلكترونية متقاطعة
+        ctx.strokeStyle = `rgba(56, 189, 248, ${lavaPulse * 0.6})`;
         ctx.lineWidth = 2.5;
         ctx.beginPath();
         ctx.moveTo(currentRockX - rock.rX * 0.4, rock.y + 20);

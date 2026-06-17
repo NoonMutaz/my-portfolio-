@@ -1,300 +1,307 @@
 import styled from "styled-components";
 import { Container } from "react-bootstrap";
 import { motion } from "framer-motion";
-import { FaPhone, FaEnvelope, FaLinkedin, FaGithub } from "react-icons/fa";
-import { colors } from "../../data/Colors-data";
+import { FaPhone, FaEnvelope, FaLinkedin, FaGithub, FaArrowRight } from "react-icons/fa";
+import { colors, fonts, gradients, ease } from "../../data/Colors-data";
 
-export default function Hero() {
-  const HeroSection = styled.section`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: ${colors.white};
-    padding: clamp(3rem, 6vw, 5rem) 0;
-    position: relative;
-    overflow: hidden;
-    scroll-margin-top: 88px;
-    
-    /* Subtle animated background elements */
-    &::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      right: -20%;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(0, 255, 127, 0.05) 0%, transparent 70%);
-      border-radius: 50%;
-      animation: float 20s ease-in-out infinite;
-      pointer-events: none;
-    }
-    
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: -30%;
-      left: -10%;
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(0, 255, 127, 0.03) 0%, transparent 70%);
-      border-radius: 50%;
-      animation: float 25s ease-in-out infinite reverse;
-      pointer-events: none;
-    }
-    
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-30px); }
-    }
-  `;
-
-const ContentWrapper = styled(motion.div)`
+const HeroSection = styled.section`
+  min-height: calc(100vh - 88px);
+  display: flex;
+  align-items: center;
+  padding: clamp(2rem, 5vw, 4rem) 0;
   position: relative;
-  z-index: 2;
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-
-  padding: clamp(2rem, 4vw, 3.5rem);
-  background-color:#0B0F1959;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-
-  /* backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px); */
-
-  border-radius: 28px;
-
-  box-shadow:
-    0 8px 40px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.04);
-
+  scroll-margin-top: 88px;
   overflow: hidden;
+`;
 
-  /* subtle glow */
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(
-        135deg,
-        rgba(0, 255, 127, 0.04),
-        transparent 40%
-      );
-    pointer-events: none;
-  }
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+  width: 100%;
 
-  @media (max-width: 768px) {
-    padding: 1.5rem;
-    border-radius: 22px;
+  @media (max-width: 992px) {
+    grid-template-columns: 1fr;
   }
 `;
 
-  const HeroTitle = styled.h1`
-    font-family: "Orbitron", sans-serif;
-    font-size: clamp(2.5rem, 6vw, 3.8rem);
-    color: ${colors.neon};
-    font-weight: 900;
-    letter-spacing: -1px;
-    margin-bottom: 1.2rem;
-    
-    /* Elegant glow effect */
-    text-shadow:
-  0 0 10px rgba(0, 255, 127, 0.5),
-  0 0 20px rgba(0, 205, 127, 0.18);
-    
-    line-height: 1.1;
-    
-    @media (max-width: 768px) {
-      margin-bottom: 0.8rem;
-    }
-  `;
+const Content = styled(motion.div)``;
 
-  const HeroSubtitle = styled.p`
-    font-size: clamp(0.95rem, 2.2vw, 1.3rem);
-    color: rgba(255, 255, 255, 0.82);
-    margin: 1.5rem 0;
-    font-weight: 400;
-    letter-spacing: 0.3px;
-    line-height: 1.6;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-  `;
+const Eyebrow = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: ${fonts.mono};
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: ${colors.accentLight};
+  margin-bottom: 1.5rem;
+  margin-top: 3.5rem; 
+`;
 
-  const ContactLinks = styled.div`
-    margin-top: 2rem;
-    display: flex;
-    justify-content: center;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-    margin-bottom: 2.5rem;
-  `;
+const StatusDot = styled.span`
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: ${colors.neon};
+  box-shadow: 0 0 10px ${colors.neon};
+  animation: pulse 2.4s ease-in-out infinite;
 
-  const InfoLink = styled(motion.a)`
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    color: rgba(255, 255, 255, 0.85);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.88rem;
-    padding: 0.55rem 1rem;
-    border-radius: 50px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.04);
-    transition: all 0.25s ease;
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.85); }
+  }
+`;
 
-    svg {
-      color: ${colors.neon};
-      font-size: 0.95rem;
-    }
+const HeroTitle = styled.h1`
+  font-family: ${fonts.display};
+  font-size: clamp(2.8rem, 7vw, 4.8rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  margin: 0 0 1rem;
+  background: ${gradients.text};
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+`;
 
-    &:hover {
-      color: ${colors.white};
-      border-color: rgba(0, 255, 127, 0.35);
-      background: rgba(0, 255, 127, 0.08);
-      transform: translateY(-2px);
-    }
-  `;
+const HeroLine = styled.p`
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: ${colors.muted};
+  line-height: 1.7;
+  max-width: 520px;
+  margin: 0 0 2rem;
+`;
 
-  const NeonButton = styled(motion.a)`
-    background: #229a32;
-    color: ${colors.black};
-    border: none;
-    padding: 0.85rem 2.8rem;
-    font-size: 1rem;
-    font-weight: 700;
-    border-radius: 50px;
-    letter-spacing: 0.5px;
-    box-shadow:
-      0 4px 20px rgba(0, 255, 127, 0.3),
-      inset 0 -2px 8px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    text-decoration: none;
-    display: inline-block;
+const Actions = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+`;
 
-    &::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: rgba(255, 255, 255, 0.1);
-      transition: left 0.5s ease;
-    }
+const PrimaryBtn = styled(motion.a)`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.8rem 1.6rem;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #0ea5e9, #38bdf8);
+  color: #021018;
+  font-weight: 700;
+  font-size: 0.92rem;
+  text-decoration: none;
+  box-shadow: 0 4px 24px rgba(14, 165, 233, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 
-    &:hover {
-      transform: translateY(-3px);
-      box-shadow:
-        0 8px 30px rgba(0, 255, 127, 0.2),
-        inset 0 -2px 8px rgba(0, 0, 0, 0.15);
-      background-color: ${colors.neon};
-      color: ${colors.black};
+  &:hover {
+    color: #021018;
+    box-shadow: 0 8px 32px rgba(56, 189, 248, 0.45);
+  }
+`;
 
-      &::before {
-        left: 100%;
-      }
-    }
+const SocialRow = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+`;
 
-    &:active {
-      transform: translateY(-1px);
-    }
-  `;
+const SocialLink = styled(motion.a)`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.85rem;
+  border-radius: 6px;
+  border: 1px solid ${colors.border};
+  background: ${colors.accentSoft};
+  color: ${colors.white};
+  font-size: 0.82rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: border-color 0.2s ease, background 0.2s ease;
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.2,
-      },
-    },
-  };
+  svg {
+    color: ${colors.accentLight};
+    font-size: 0.85rem;
+  }
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.34, 1.56, 0.64, 1],
-      },
-    },
-  };
+  &:hover {
+    border-color: ${colors.borderHover};
+    background: rgba(56, 189, 248, 0.16);
+    color: ${colors.white};
+  }
+`;
 
+const Visual = styled(motion.div)`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 320px;
+
+  @media (max-width: 992px) {
+    min-height: 260px;
+  }
+`;
+
+const OrbitRing = styled.div`
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(56, 189, 248, 0.15);
+
+  &.outer {
+    width: min(380px, 80vw);
+    height: min(380px, 80vw);
+    animation: spin 40s linear infinite;
+  }
+
+  &.mid {
+    width: min(280px, 62vw);
+    height: min(280px, 62vw);
+    border-color: rgba(125, 211, 252, 0.2);
+    animation: spin 28s linear infinite reverse;
+  }
+
+  &.inner {
+    width: min(180px, 42vw);
+    height: min(180px, 42vw);
+    border-color: rgba(96, 165, 250, 0.25);
+    background: radial-gradient(circle, rgba(14, 116, 200, 0.12), transparent 70%);
+    animation: spin 18s linear infinite;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+`;
+
+const Core = styled.div`
+  position: relative;
+  z-index: 2;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #7dd3fc, #0ea5e9 55%, #0369a1);
+  box-shadow:
+    0 0 40px rgba(56, 189, 248, 0.5),
+    0 0 80px rgba(14, 165, 233, 0.2);
+`;
+
+const OrbitDot = styled.span`
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: ${colors.accentLight};
+  box-shadow: 0 0 12px ${colors.neon};
+  top: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+`;
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.12, delayChildren: 0.15 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease } },
+};
+
+export default function Hero() {
   return (
     <HeroSection id="home">
       <Container>
-        <ContentWrapper
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <motion.div variants={itemVariants}>
-            <HeroTitle>Noon Almutaz</HeroTitle>
-          </motion.div>
+        <Grid>
+          <Content
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            <motion.div variants={itemVariants}>
+              <Eyebrow>
+                <StatusDot />
+                Software Engineer · Open to opportunities
+              </Eyebrow>
+            </motion.div>
 
-          <motion.div variants={itemVariants}>
-            <HeroSubtitle>
-              Software Engineer • Developer • Problem Solver
-            </HeroSubtitle>
-          </motion.div>
+            <motion.div variants={itemVariants}>
+              <HeroTitle>
+                Noon
+                <br />
+                Almutaz
+              </HeroTitle>
+            </motion.div>
 
-          <motion.div variants={itemVariants}>
-            <ContactLinks>
-              <InfoLink
-                href="tel:+966581019574"
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-              >
-                <FaPhone /> Phone
-              </InfoLink>
-              <InfoLink
-                href="mailto:noonalmutaz002@gmail.com"
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-              >
-                <FaEnvelope /> Email
-              </InfoLink>
-              <InfoLink
-                href="https://www.linkedin.com/in/noon-almutaz-059a61267"
-                target="_blank"
-                rel="noreferrer"
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-              >
-                <FaLinkedin /> LinkedIn
-              </InfoLink>
-              <InfoLink
-                href="https://github.com/NoonMutaz"
-                target="_blank"
-                rel="noreferrer"
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-              >
-                <FaGithub /> GitHub
-              </InfoLink>
-            </ContactLinks>
-          </motion.div>
+            <motion.div variants={itemVariants}>
+              <HeroLine>
+                Building precise, performant web experiences — from interface
+                craft to full-stack delivery across React, Next.js, and .NET.
+              </HeroLine>
+            </motion.div>
 
-          <motion.div variants={itemVariants}>
-            <NeonButton
-              href="#projects"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Explore My Work
-            </NeonButton>
-          </motion.div>
-        </ContentWrapper>
+            <motion.div variants={itemVariants}>
+              <Actions>
+                <PrimaryBtn
+                  href="#projects"
+                  whileHover={{ scale: 1.03, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  View Projects <FaArrowRight size={12} />
+                </PrimaryBtn>
+              </Actions>
+            </motion.div>
+
+            <motion.div variants={itemVariants}>
+              <SocialRow>
+                <SocialLink href="tel:+966581019574" whileHover={{ y: -2 }}>
+                  <FaPhone /> Phone
+                </SocialLink>
+                <SocialLink href="mailto:noonalmutaz002@gmail.com" whileHover={{ y: -2 }}>
+                  <FaEnvelope /> Email
+                </SocialLink>
+                <SocialLink
+                  href="https://www.linkedin.com/in/noon-almutaz-059a61267"
+                  target="_blank"
+                  rel="noreferrer"
+                  whileHover={{ y: -2 }}
+                >
+                  <FaLinkedin /> LinkedIn
+                </SocialLink>
+                <SocialLink
+                  href="https://github.com/NoonMutaz"
+                  target="_blank"
+                  rel="noreferrer"
+                  whileHover={{ y: -2 }}
+                >
+                  <FaGithub /> GitHub
+                </SocialLink>
+              </SocialRow>
+            </motion.div>
+          </Content>
+
+          <Visual
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, ease, delay: 0.3 }}
+            aria-hidden="true"
+          >
+            <OrbitRing className="outer">
+              <OrbitDot />
+            </OrbitRing>
+            <OrbitRing className="mid" />
+            <OrbitRing className="inner" />
+            <Core />
+          </Visual>
+        </Grid>
       </Container>
     </HeroSection>
   );

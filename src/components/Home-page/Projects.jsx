@@ -3,59 +3,28 @@
 import styled from "styled-components";
 import { Row, Col } from "react-bootstrap";
 import { motion } from "framer-motion";
-import { colors } from "../../data/Colors-data";
+import { colors, fonts } from "../../data/Colors-data";
 import { projects } from "../../data/Projects-data";
 import { useState } from "react";
 
-const SectionTitle = styled.h2`
-  color: white;
-  font-size: clamp(1.8rem, 4vw, 2.2rem);
-  font-weight: 800;
-  margin-bottom: clamp(1.8rem, 3vw, 2.5rem);
-  letter-spacing: -0.8px;
-  position: relative;
-  line-height: 1.2;
-  
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: calc(-1 * clamp(0.6rem, 1.5vw, 0.9rem));
-    left: 0;
-    width: 50px;
-    height: 3px;
-    background: linear-gradient(to right, #00ff7f, rgba(0, 255, 127, 0));
-    border-radius: 2px;
-  }
-`;
-
-const ProjectCard = styled(motion.div)`
-  border-radius: 16px;
+const ProjectCard = styled(motion.article)`
+  border-radius: 8px;
   overflow: hidden;
-  border: 1px solid rgba(0, 255, 127, 0.15);
-  background: linear-gradient(
-    135deg,
-    rgba(15, 23, 42, 0.6),
-    rgba(8, 12, 24, 0.4)
-  );
+  border: 1px solid ${colors.border};
+  background: ${colors.surface};
   backdrop-filter: blur(8px);
-  box-shadow: 
-    0 8px 24px rgba(0, 0, 0, 0.3),
-    inset 0 1px 1px rgba(255, 255, 255, 0.04);
-
-  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: border-color 0.3s ease, transform 0.3s ease;
   height: 100%;
   display: flex;
   flex-direction: column;
 
   &:hover {
-    transform: translateY(-8px);
-    border-color: rgba(0, 255, 127, 0.35);
-    box-shadow:
-      0 16px 40px rgba(0, 255, 127, 0.15),
-      inset 0 1px 1px rgba(255, 255, 255, 0.06);
-    
-    .media-wrapper {
-      filter: brightness(1.1);
+    transform: translateY(-6px);
+    border-color: ${colors.borderHover};
+
+    .media-wrapper img,
+    .media-wrapper video {
+      transform: scale(1.04);
     }
   }
 `;
@@ -73,7 +42,7 @@ const MediaWrapper = styled.div`
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: filter 0.4s ease;
+    transition: transform 0.4s ease;
   }
 
   video {
@@ -90,14 +59,15 @@ const ProjectContent = styled.div`
 
   h4 {
     color: ${colors.white};
-    margin-bottom: 0.8rem;
-    font-size: clamp(1.05rem, 2vw, 1.2rem);
-    font-weight: 700;
-    letter-spacing: -0.3px;
+    font-family: ${fonts.display};
+    margin-bottom: 0.6rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
   }
 
   p {
-    color: #b8c5d0;
+    color: ${colors.muted};
     font-size: 0.95rem;
     line-height: 1.7;
     margin-bottom: 0;
@@ -118,51 +88,41 @@ const ProjectActions = styled.div`
   padding-top: 1.4rem;
   align-items: center;
   flex-wrap: wrap;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid ${colors.border};
 `;
 
 const LinkButton = styled(motion.button)`
-  background: ${colors.neon};
+  background: linear-gradient(135deg, #0ea5e9, #38bdf8);
   border: none;
-  color: #06110a;
-  font-size: 0.9rem;
+  color: #021018;
+  font-size: 0.82rem;
   font-weight: 700;
-  padding: 0.6rem 1.2rem;
-  border-radius: 50px;
+  padding: 0.55rem 1.1rem;
+  border-radius: 6px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  letter-spacing: 0.3px;
-  box-shadow: 0 4px 12px rgba(0, 255, 127, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  letter-spacing: 0.02em;
 
   &:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 20px rgba(0, 255, 127, 0.35);
-  }
-
-  &:active {
-    transform: scale(0.98);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(56, 189, 248, 0.35);
   }
 `;
 
 const ExpandButton = styled(motion.button)`
   background: transparent;
-  border: 1.5px solid rgba(0, 255, 127, 0.4);
-  color: ${colors.neon};
-  font-size: 0.85rem;
+  border: 1px solid ${colors.border};
+  color: ${colors.accentLight};
+  font-size: 0.82rem;
   font-weight: 600;
-  border-radius: 50px;
+  border-radius: 6px;
   padding: 0.5rem 1rem;
   cursor: pointer;
-  transition: all 0.3s ease;
-  letter-spacing: 0.3px;
+  transition: all 0.2s ease;
 
   &:hover {
-    background: rgba(0, 255, 127, 0.08);
-    border-color: rgba(0, 255, 127, 0.6);
-  }
-
-  &:active {
-    transform: scale(0.96);
+    background: ${colors.accentSoft};
+    border-color: ${colors.borderHover};
   }
 `;
 
@@ -211,9 +171,7 @@ export default function Projects() {
       whileInView="visible"
       viewport={{ once: true, amount: 0.1 }}
     >
-      <SectionTitle>Projects</SectionTitle>
-
-      <Row className="g-4">
+      <Row className="g-3">
         {projects.map((project, idx) => {
           const isExpanded = expanded === project.id;
 
