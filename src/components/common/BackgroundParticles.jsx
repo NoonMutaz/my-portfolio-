@@ -19,17 +19,17 @@ export default function UltimateCyberSpaceBackground() {
 
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    // 🟢 لوحة ألوان النيون والأخضر السيبراني
-    const getNeonColor = (opacity = 1) => {
+    // درجات ألوان أقرب للفضاء الحقيقي (أبيض + أزرق بارد + دافئ خفيف)
+    const getStarColor = (opacity = 1) => {
       const palette = [
-        "rgba(125, 211, 252",
-        "rgba(56, 189, 248",
-        "rgba(96, 165, 250",
-        "rgba(14, 165, 233",
-        "rgba(255, 255, 255",
+        [255, 255, 255],
+        [236, 244, 255],
+        [209, 227, 255],
+        [186, 212, 255],
+        [255, 233, 201],
       ];
-      const selectedColor = palette[Math.floor(Math.random() * palette.length)];
-      return `${selectedColor}, ${opacity})`;
+      const [r, g, b] = palette[Math.floor(Math.random() * palette.length)];
+      return `rgba(${r}, ${g}, ${b}, ${opacity})`;
     };
 
     const setSize = () => {
@@ -39,43 +39,52 @@ export default function UltimateCyberSpaceBackground() {
       const centerX = canvas.width * 0.5;
       const centerY = canvas.height * 0.5;
 
-      // 1. 🌌 توزيع النجوم بكل الأحجام على كامل الصفحة بشكل متوازن
-      const starCount = prefersReducedMotion ? 120 : 320;
+      // 1. 🌌 توزيع نجوم أكثف وأقرب لسماء الفضاء الحقيقية
+      const starCount = prefersReducedMotion ? 260 : 1100;
       stars = Array.from({ length: starCount }, () => {
-        const decider = Math.random();
-        
-        // توزيع خطي (Linear) يضمن انتشار النجوم في كل زوايا الشاشة بدون تكدس بالمنتصف
-        const maxRadius = Math.max(canvas.width, canvas.height) * 0.75;
-        const distance = Math.random() * maxRadius + 10; 
-        const initialAngle = Math.random() * Math.PI * 2;
-        
-        let radius, color, isSparkleShape = false;
+        const layerPick = Math.random();
+        let radius;
+        let baseAlpha;
+        let depth;
+        let glow;
+        let twinkleSpeed;
+        let sparkleChance;
 
-        if (decider < 0.45) {
-          // نجوم صغيرة جداً وخلفية (غبار نجمي)
-          radius = Math.random() * 1.2 + 0.6;
-          color = getNeonColor(0.4);
-        } else if (decider < 0.85) {
-          // نجوم متوسطة وكبيرة واضحة الحجم وموزعة بكل مكان
-          radius = Math.random() * 2.5 + 1.4;
-          color = getNeonColor(0.75);
-          isSparkleShape = Math.random() > 0.4; // تحويل بعضها لشكل براق ✨
+        if (layerPick < 0.8) {
+          radius = Math.random() * 0.85 + 0.2; // نجوم بعيدة خافتة
+          baseAlpha = 0.25 + Math.random() * 0.36;
+          depth = 0.1 + Math.random() * 0.22;
+          glow = radius * (0.45 + Math.random() * 0.45);
+          twinkleSpeed = Math.random() * 0.007 + 0.002;
+          sparkleChance = 0.03;
+        } else if (layerPick < 0.96) {
+          radius = Math.random() * 1.4 + 0.9;
+          baseAlpha = 0.5 + Math.random() * 0.3;
+          depth = 0.35 + Math.random() * 0.34;
+          glow = radius * (0.9 + Math.random() * 1.0);
+          twinkleSpeed = Math.random() * 0.01 + 0.0035;
+          sparkleChance = 0.14;
         } else {
-          // نجوم عملاقة وبراقة جداً بارزة في الواجهة
-          radius = Math.random() * 4.2 + 2.5;
-          color = "rgba(255, 255, 255, 0.95)";
-          isSparkleShape = true;
+          radius = Math.random() * 2.1 + 2.1; // نجوم قريبة وساطعة جداً
+          baseAlpha = 0.7 + Math.random() * 0.24;
+          depth = 0.72 + Math.random() * 0.28;
+          glow = radius * (1.7 + Math.random() * 1.6);
+          twinkleSpeed = Math.random() * 0.014 + 0.005;
+          sparkleChance = 0.58;
         }
 
         return {
-          distance,
-          angle: initialAngle,
-          // حركة دائرية مستمرة (النجوم البعيدة تتحرك أبطأ بشكل واقعي)
-          orbitSpeed: (0.0002 + Math.random() * 0.0005) * (300 / (distance + 100)),
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          driftX: (Math.random() - 0.5) * 0.02,
+          driftY: (Math.random() - 0.5) * 0.02,
           r: radius,
-          color,
-          isSparkleShape,
-          twinkleSpeed: Math.random() * 0.02 + 0.008,
+          color: getStarColor(baseAlpha),
+          baseAlpha,
+          depth,
+          glow,
+          isSparkleShape: Math.random() < sparkleChance,
+          twinkleSpeed,
           phase: Math.random() * Math.PI * 2,
         };
       });
@@ -225,22 +234,53 @@ export default function UltimateCyberSpaceBackground() {
         }
       });
 
-      // --- ثالثاً: رسم النجوم الدوارة والمنتشرة في كامل الصفحة ---
+      // --- ثالثاً: رسم النجوم بطبقات عمق ولمعان طبيعي ---
       stars.forEach((s) => {
-        s.angle += s.orbitSpeed; // دوران مستمر بدون توقف
+        s.x += s.driftX;
+        s.y += s.driftY;
+        if (s.x < -4) s.x = canvas.width + 4;
+        if (s.x > canvas.width + 4) s.x = -4;
+        if (s.y < -4) s.y = canvas.height + 4;
+        if (s.y > canvas.height + 4) s.y = -4;
 
-        let rx = centerX + Math.cos(s.angle) * s.distance + (mouse.x * s.r * 3);
-        let ry = centerY + Math.sin(s.angle) * s.distance + (mouse.y * s.r * 3);
-
-        const twinkle = Math.sin(time * s.twinkleSpeed + s.phase) * 0.25 + 0.75;
-        const alpha = Math.max(0.15, twinkle);
+        const rx = s.x + mouse.x * (8 + s.depth * 22);
+        const ry = s.y + mouse.y * (8 + s.depth * 22);
+        const twinkle = Math.sin(time * s.twinkleSpeed + s.phase) * 0.23 + 0.8;
+        const alpha = Math.max(0.12, Math.min(1, s.baseAlpha * twinkle));
+        const glowAlpha = alpha * 0.34;
 
         if (s.isSparkleShape) {
-          drawSparkleStar(ctx, rx, ry, 4, s.r * 2.0 * twinkle, s.r * 0.35, `${s.color}, ${alpha})`);
+          const sparkleOuter = s.r * (2.1 + s.depth * 0.5) * twinkle;
+          drawSparkleStar(
+            ctx,
+            rx,
+            ry,
+            4,
+            sparkleOuter,
+            s.r * 0.3,
+            `rgba(236, 244, 255, ${Math.min(1, alpha + 0.08)})`
+          );
+
+          // هالة ناعمة حول نجوم ✨ لتشبه التوهج الضوئي الواقعي
+          const sparkleGlow = ctx.createRadialGradient(rx, ry, 0, rx, ry, sparkleOuter * 2);
+          sparkleGlow.addColorStop(0, `rgba(186, 212, 255, ${alpha * 0.32})`);
+          sparkleGlow.addColorStop(1, "rgba(0, 0, 0, 0)");
+          ctx.fillStyle = sparkleGlow;
+          ctx.beginPath();
+          ctx.arc(rx, ry, sparkleOuter * 2, 0, Math.PI * 2);
+          ctx.fill();
         } else {
+          const glowGradient = ctx.createRadialGradient(rx, ry, 0, rx, ry, s.glow);
+          glowGradient.addColorStop(0, `rgba(186, 212, 255, ${glowAlpha})`);
+          glowGradient.addColorStop(1, "rgba(0, 0, 0, 0)");
+          ctx.fillStyle = glowGradient;
+          ctx.beginPath();
+          ctx.arc(rx, ry, s.glow, 0, Math.PI * 2);
+          ctx.fill();
+
           ctx.beginPath();
           ctx.arc(rx, ry, s.r * twinkle, 0, Math.PI * 2);
-          ctx.fillStyle = `${s.color}, ${alpha})`;
+          ctx.fillStyle = s.color.replace(/[\d.]+\)$/, `${alpha})`);
           ctx.fill();
         }
       });

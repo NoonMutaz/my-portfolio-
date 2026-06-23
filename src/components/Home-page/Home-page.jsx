@@ -12,6 +12,8 @@ import Experience from "./Experience";
 import Footer from "../common/Footer";
 import BackToTop from "../common/BackToTop";
 import SectionHeader from "../common/SectionHeader";
+import GhostCursor from '../common/GhostCursor'
+
 import { colors } from "../../data/Colors-data";
 
 const PageShell = styled.div`
@@ -57,7 +59,35 @@ function HomePage() {
       <Navbar />
       <BackToTop />
 
-      <Hero />
+<PageShell>
+  <GhostCursor
+    color="#3B82F6"
+    brightness={2}
+    edgeIntensity={0}
+    trailLength={40}
+    inertia={0.19}
+    grainIntensity={0.05}
+    bloomStrength={0.3}
+    bloomRadius={1}
+    bloomThreshold={0.025}
+    fadeDelayMs={1000}
+    fadeDurationMs={1500}
+    style={{
+      position: "fixed",
+      inset: 0,
+      width: "100vw",
+      height: "100vh",
+      pointerEvents: "none",
+      zIndex: -1,
+    }}
+  />
+
+  <Navbar />
+  <BackToTop />
+  <Hero />
+  ...
+
+      
 
       <Section id="experience">
         <Container>
@@ -76,7 +106,7 @@ function HomePage() {
           </motion.div>
         </Container>
       </Section>
-
+</PageShell>
       <Section id="projects">
         <Container>
           <SectionHeader
