@@ -23,11 +23,11 @@ export const projects = [
 //   },
      {
     id: 3,
-    title: "QAflow",
+    title: "Imtithal Site Inspection",
    
-   description: " QAFlow is a cloud based QA issue tracking and project management system built using Nextjs, .NET Web APIs and deployed on Azure. It enables teams to organize testing workflows, track bugs across projects, and visualize issue status in real time. The system includes a structured project hierarchy, status based bug lifecycle management, and a duplicate detection mechanism that reduces redundant issue reporting by comparing issue similarity.",
+    description: "AI site inspection platform for the Saudi Building Code (Next.js, TypeScript, ASP.NET Core). Turns a site photo into a finding with the matching SBC 2024 clause, tracks each fix with deadlines, photo proof and owner approval, and locks project phases until all findings are closed. Arabic/English, formerly QAFlow.",
     image:qaFlow  ,
-    alt: "QAFlow Project",
+    alt: "Imtithal Site Inspection Project",
     link: "https://qa-flow-eight.vercel.app/",
   },
   
